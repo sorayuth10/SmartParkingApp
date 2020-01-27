@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
 
     LogoContainer: {  
       marginTop: '10%',  
-      paddingTop: '10%',
+      paddingTop: '1%',
       paddingVertical: 20,
       backgroundColor: 'white',
       alignItems: 'center'  

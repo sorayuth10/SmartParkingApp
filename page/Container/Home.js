@@ -16,19 +16,19 @@ export default class Home extends React.Component {
     <View style={styles.container}> 
     <View style={styles.Text}> 
     <Text style = {styles.Text1}>
-    3
+    3 คัน
     </Text>
 
     <Text style = {styles.Text2}>
-    ทั้งหมด
+    เหลือที่ว่าง
     </Text>
 
     <Text style = {styles.Text3}>
-    3 
+    3 คัน
     </Text>
 
     <Text style = {styles.Text4}>
-    เหลือที่ว่าง
+    ทั้งหมด
     </Text>
    
     </View>
@@ -37,6 +37,7 @@ export default class Home extends React.Component {
 
     <View style={styles.car}> 
     <View style={{flex: 1, flexDirection: 'row'}}>  
+   
     <Image
             style={{ width: 105, height: 200}}
             source={require('../../image/Green.png')} /> 
@@ -48,6 +49,15 @@ export default class Home extends React.Component {
             source={require('../../image/Green.png')} /> 
     </View> 
     </View>  
+
+    <View style={styles.buttonContainer}>  
+                    <Button  
+                        onPress={this.onPressButton}  
+                        title="ดูสถานที่อื่นๆ"
+                        color="#848484" 
+                        onPress={() => navigate('Park', {name: 'Park'})}
+                    />  
+                </View>  
     </View>
 );  
 }  
@@ -63,12 +73,11 @@ backgroundColor: 'white',
 Text: {
   textAlign: "center",
   alignItems:'center',
+  
+  
   marginTop: 30  
  
- 
-  
 },
-
 
 
 Text1: {
@@ -76,14 +85,15 @@ Text1: {
   textAlign: "center",
   fontSize :40,
   alignItems:'center',
- 
+
   
 },
 
 Text2: {
-  color: 'black',
+  color: '#7D7D7D',
   textAlign: "center",
-  fontSize :25,
+  fontSize :20,
+  flexDirection:'row',
   alignItems:'center',
  
   
@@ -99,20 +109,26 @@ Text3: {
 },
 
 Text4: {
-  color: 'black',
+  color: '#7D7D7D',
   textAlign: "center",
-  fontSize :25,
+  fontSize :20,
   alignItems:'center',
   
   
 },
 
 
-
 car: {  
   marginTop: 40,     
   backgroundColor: 'red',  
   alignItems: 'center'
+},
+
+buttonContainer: {  
+  marginTop: 300,   
+  margin:20  
+  
+  
 },
 
 
