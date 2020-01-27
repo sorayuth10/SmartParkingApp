@@ -21,7 +21,7 @@ export default class Register extends React.Component {
 
     <View style={styles.InputContainer}>     
     <Input
-    placeholder='First name'
+    placeholder='Name'
     textAlign='left'
     
     />
@@ -29,7 +29,7 @@ export default class Register extends React.Component {
 
     <View style={styles.InputContainer}>     
     <Input
-    placeholder='Last name'
+    placeholder='Email'
     textAlign='left'
 
     />

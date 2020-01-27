@@ -1,7 +1,10 @@
 import React, { Component } from 'react';  
-import { Alert, AppRegistry, Button, StyleSheet, View, Text, ActivityIndicator, SafeAreaView } from 'react-native';  
+import { Alert, AppRegistry, Button, StyleSheet, View, Text, ActivityIndicator, SafeAreaView, KeyboardAvoidingView, TouchableHighlight, TextInput } from 'react-native';  
 import { Image,SocialIcon,Input } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
+
+
+
 
 export default class Login extends React.Component {
   static navigationOptions = {
@@ -19,39 +22,36 @@ export default class Login extends React.Component {
                 />
                 </View> 
 
-                <View style={styles.InputContainer}>     
-                <Input
-                placeholder='Username'
-                textAlign='left'
-                
-                leftIcon={
-                  <Icon
-                    name='user'
-                    size={25}
-                    color='black'
-                    
-                  />
-                }
+
+                <View style={styles.inputContainer}>
+                <Icon style={styles.Icon}
+                        name='user' 
+                        size={25}
+                        color='black'
+                />
+                <TextInput style={styles.input}
+                        placeholder="Username"
+                        onChangeText={(Username) => this.setState({Username})}
                 />
                 </View>
 
-                <View style={styles.InputContainer}>
-                  <Input
-                secureTextEntry
-                placeholder='Password'
-                autoCapitalize="none"
-                textAlign='left'
-                leftIcon={
-                  <Icon
-                    name='lock'
-                    size={25}
-                    color='black'
-                  />
-                }
-                errorStyle={{color: 'red', textAlign: 'right'}}
-                errorMessage='Forget Password?'
+
+                <View style={styles.inputContainer}>
+                <Icon style={styles.Icon}
+                        name='lock'
+                        size={25}
+                        color='black'
+                        marginLeft='55'
+                        margin='20' 
+                        paddingLeft='50'
                 />
-                </View>  
+                <TextInput style={styles.input}
+                        placeholder="Password"
+                        secureTextEntry={true}
+                        underlineColorAndroid='transparent'
+                        onChangeText={(Password) => this.setState({Password})}/>
+                </View>
+
 
                 <View style={styles.buttonContainer}>  
                     <Button  
@@ -71,6 +71,7 @@ export default class Login extends React.Component {
                     />  
                 </View>  
               
+
             </View>  
         );  
     }  
@@ -85,32 +86,61 @@ const styles = StyleSheet.create({
         margin: 50
     }, */
     
-    container: {  
-      margin: 0,    
+    container: {    
+      flex: 1,
       backgroundColor: 'white',  
     },
 
+
     LogoContainer: {  
-      marginTop: 80 ,  
-      paddingTop: 60,
+      marginTop: '10%',  
+      paddingTop: '10%',
       paddingVertical: 20,
       backgroundColor: 'white',
       alignItems: 'center'  
     },
 
-    InputContainer: {  
-      margin: 10, 
-      marginTop: 20 , 
-      flexDirection: 'row',  
-      justifyContent: 'space-between',
-      backgroundColor: 'white',  
-      
-    },
+
+    inputContainer: {
+      borderBottomColor: '#E3E3E3',
+      backgroundColor: '#E3E3E3',
+      borderRadius:30,
+      width:325,
+      height:50,
+      marginBottom:1,
+      flexDirection: 'row',
+      marginLeft:15,
+      marginTop: '5%',  
+      paddingTop: '7%',
+      alignItems:'center'
+     
+  },
+
+
+    Icon:{
+      height:25,
+      marginLeft:15,
+      borderBottomColor: '#FFFFFF',    
+  },
+
+
+    input:{
+      height:45,
+      marginLeft:20,
+      borderBottomColor: '#FFFFFF',
+      flex:1,  
+  },
+
 
     buttonContainer: {  
-        margin: 20,
+      marginTop: '10%' ,  
+      paddingTop: '2%',
+      width:325,
+      height:50,
+      margin:'5%',
+      marginBottom:'0%'
               
-    }
+  }
 })
 
      {/* <Button
