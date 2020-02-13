@@ -1,7 +1,9 @@
 import React from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, StatusBar } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, StatusBar, Image } from 'react-native'
 import * as firebase from 'firebase'
 import { Ionicons } from '@expo/vector-icons'
+import { Dimensions } from 'react-native'
+import Dialog, { DialogContent } from 'react-native-popup-dialog'
 
 export default class Parking extends React.Component {
   static navigationOptions = {
@@ -15,6 +17,10 @@ export default class Parking extends React.Component {
   componentDidMount() {
     // const { email, displayName } = firebase.auth().currentUser
     // this.setState({ email, displayName })
+  }
+
+  handleBooking() {
+    //จองงง
   }
 
   render() {
@@ -34,7 +40,141 @@ export default class Parking extends React.Component {
         </View>
 
         <View style={styles.form}>
-          <Text>Parking page</Text>
+          <TouchableOpacity
+            onPress={() => {
+              this.setState({ visible: true })
+            }}
+          >
+            <View style={styles.item}>
+              <Image
+                style={{ width: Dimensions.get('window').width / 5, height: Dimensions.get('window').height / 5.2 }}
+                source={require('../../image/Green.png')}
+              />
+              <Text style={{ alignSelf: 'center' }}>park001</Text>
+            </View>
+          </TouchableOpacity>
+          <Dialog
+            visible={this.state.visible}
+            onTouchOutside={() => {
+              this.setState({ visible: false })
+            }}
+          >
+            <DialogContent>
+              <Text>oiioioi</Text>
+            </DialogContent>
+          </Dialog>
+
+          <TouchableOpacity onPress={this.handleBooking}>
+            <View style={styles.item}>
+              <Image
+                style={{ width: Dimensions.get('window').width / 5, height: Dimensions.get('window').height / 5.2 }}
+                source={require('../../image/Green.png')}
+              />
+              <Text style={{ alignSelf: 'center' }}>park002</Text>
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={this.handleBooking}>
+            <View style={styles.item}>
+              <Image
+                style={{ width: Dimensions.get('window').width / 5, height: Dimensions.get('window').height / 5.2 }}
+                source={require('../../image/Green.png')}
+              />
+              <Text style={{ alignSelf: 'center' }}>park003</Text>
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={this.handleBooking}>
+            <View style={styles.item}>
+              <Image
+                style={{ width: Dimensions.get('window').width / 5, height: Dimensions.get('window').height / 5.2 }}
+                source={require('../../image/Green.png')}
+              />
+              <Text style={{ alignSelf: 'center' }}>park004</Text>
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={this.handleBooking}>
+            <View style={styles.item}>
+              <Image
+                style={{ width: Dimensions.get('window').width / 5, height: Dimensions.get('window').height / 5.2 }}
+                source={require('../../image/Green.png')}
+              />
+              <Text style={{ alignSelf: 'center' }}>park005</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.form}>
+          <TouchableOpacity onPress={this.handleBooking}>
+            <View style={styles.item}>
+              <Image
+                style={{
+                  width: Dimensions.get('window').width / 5,
+                  height: Dimensions.get('window').height / 5.2,
+                  transform: [{ rotate: '180deg' }]
+                }}
+                source={require('../../image/Green.png')}
+              />
+              <Text style={{ alignSelf: 'center' }}>park006</Text>
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={this.handleBooking}>
+            <View style={styles.item}>
+              <Image
+                style={{
+                  width: Dimensions.get('window').width / 5,
+                  height: Dimensions.get('window').height / 5.2,
+                  transform: [{ rotate: '180deg' }]
+                }}
+                source={require('../../image/Green.png')}
+              />
+              <Text style={{ alignSelf: 'center' }}>park007</Text>
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={this.handleBooking}>
+            <View style={styles.item}>
+              <Image
+                style={{
+                  width: Dimensions.get('window').width / 5,
+                  height: Dimensions.get('window').height / 5.2,
+                  transform: [{ rotate: '180deg' }]
+                }}
+                source={require('../../image/Green.png')}
+              />
+              <Text style={{ alignSelf: 'center' }}>park008</Text>
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={this.handleBooking}>
+            <View style={styles.item}>
+              <Image
+                style={{
+                  width: Dimensions.get('window').width / 5,
+                  height: Dimensions.get('window').height / 5.2,
+                  transform: [{ rotate: '180deg' }]
+                }}
+                source={require('../../image/Green.png')}
+              />
+              <Text style={{ alignSelf: 'center' }}>park009</Text>
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={this.handleBooking}>
+            <View style={styles.item}>
+              <Image
+                style={{
+                  width: Dimensions.get('window').width / 5,
+                  height: Dimensions.get('window').height / 5.2,
+                  transform: [{ rotate: '180deg' }]
+                }}
+                source={require('../../image/Green.png')}
+              />
+              <Text style={{ alignSelf: 'center' }}>park010</Text>
+            </View>
+          </TouchableOpacity>
         </View>
       </View>
     )
@@ -65,10 +205,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '500'
   },
-  form: {
-    marginVertical: 20,
-    marginHorizontal: 20
-  },
   back: {
     position: 'absolute',
     top: 30,
@@ -80,6 +216,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     flexDirection: 'row'
+  },
+  form: {
+    marginVertical: '10%',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between'
   }
 })
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, StatusBar, Image } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, StatusBar, Image, ScrollView } from 'react-native'
 import * as firebase from 'firebase'
 import { Ionicons } from '@expo/vector-icons'
 import Menu, { MenuItem, MenuDivider } from 'react-native-material-menu'
@@ -27,18 +27,21 @@ export default class Home extends React.Component {
   state = {
     // email: "",
     // displayName: ""
+    place: ""
   }
 
   componentDidMount() {
     if (!firebase.auth().currentUser.displayName) {
       this.props.navigation.navigate('NewProfile')
-    } 
-    else {
+    } else {
       // this.props.navigation.navigate('Home')
-      var ref = firebase.database().ref('Place').on('value') 
+        firebase.database().ref('Place/--keys--').on('value', (data) => {
+          let place = Object.keys(data.toJSON()).length
+          this.setState({ place })
+        })
     }
   }
- 
+
   handleProfile = () => {
     this._menu.hide()
     this.props.navigation.navigate('Profile')
@@ -58,8 +61,6 @@ export default class Home extends React.Component {
   /*CONCEPT fetching data to place page*/
   //loop: n times
   //// use forloop n times
-  //// use forloop 2 times for horizontal
-  //// end loop horizontal
   //// n next times..
 
   render() {
@@ -87,23 +88,42 @@ export default class Home extends React.Component {
             </Menu>
           </View>
         </View>
+        <ScrollView>
+          <View style={styles.form}>
+            <TouchableOpacity onPress={this.handleParking}>
+              <View style={styles.item}>
+                <Image
+                  style={{ width: Dimensions.get('window').width / 2.02, height: 125 }}
+                  source={require('../../image/ConventionHall.jpg')}
+                />
+                <Text style={{ alignSelf: 'center' }}>ConventionHall</Text>
+              </View>
+            </TouchableOpacity>
 
-        <View style={styles.form}>
-          <TouchableOpacity onPress={this.handleParking}>
-            <View style={styles.item}>
-              <Image style={{ width: Dimensions.get('window').width/2.02, height: 125 }} source={require('../../image/ConventionHall.jpg')} />
-              <Text style={{ alignSelf: 'center' }}>ConventionHall</Text>
-            </View>
-          </TouchableOpacity>
+            <TouchableOpacity onPress={this.handleParking}>
+              <View style={styles.item}>
+                <Image
+                  style={{ width: Dimensions.get('window').width / 2.02, height: 125 }}
+                  source={require('../../image/ConventionHall.jpg')}
+                />
+                <Text style={{ alignSelf: 'center' }}>ConventionHall</Text>
+              </View>
+            </TouchableOpacity>
 
-          <TouchableOpacity onPress={this.handleParking}>
-            <View style={styles.item}>
-              <Image style={{ width: Dimensions.get('window').width/2.02, height: 125 }} source={require('../../image/ConventionHall.jpg')} />
-              <Text style={{ alignSelf: 'center' }}>ConventionHall</Text>
-            </View>
-          </TouchableOpacity>
+            <TouchableOpacity onPress={this.handleParking}>
+              <View style={styles.item}>
+                <Image
+                  style={{ width: Dimensions.get('window').width / 2.02, height: 125 }}
+                  source={require('../../image/ConventionHall.jpg')}
+                />
+                <Text style={{ alignSelf: 'center' }}>ConventionHall</Text>
+              </View>
+            </TouchableOpacity>
 
-        </View>
+            <Text>{this.state.place}</Text>
+
+          </View>
+        </ScrollView>
       </View>
     )
   }
@@ -111,7 +131,7 @@ export default class Home extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 1
     // justifyContent: 'center',
     // alignItems: 'center'
   },
@@ -135,7 +155,9 @@ const styles = StyleSheet.create({
   },
   form: {
     marginVertical: 20,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between'
   },
   menumore: {
     position: 'absolute',
@@ -146,6 +168,7 @@ const styles = StyleSheet.create({
     // backgroundColor: 'rgba(21, 22, 48, 0.1)',
   },
   item: {
-    marginHorizontal: '.2%'
+    marginHorizontal: '.2%',
+    marginVertical: '3%'
   }
 })
