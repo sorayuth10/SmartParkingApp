@@ -30,7 +30,10 @@ export default class AboutUs extends React.Component {
         </View>
 
         <View style={styles.form}>
-          <Text>kuyraiisus</Text>
+          
+          <Text style={{ color: 'black' , textAlign: 'center' , fontWeight: 'bold'}}>NITHI    SEMANUANG</Text>
+          <Text style={{ color: 'black' , textAlign: 'center' , fontWeight: 'bold'}}>PAPON    PROMMOOL</Text>
+          <Text style={{ color: 'black' , textAlign: 'center' , fontWeight: 'bold'}}>SORAYUTH    CHAROENSRISAN</Text>
         </View>
       </View>
     )
@@ -63,7 +66,10 @@ const styles = StyleSheet.create({
   },
   form: {
     marginVertical: 20,
-    marginHorizontal: 20
+    marginHorizontal: 20,
+    marginTop: 100
+ 
+ 
   },
   back: {
     position: 'absolute',

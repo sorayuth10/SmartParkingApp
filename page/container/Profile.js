@@ -42,12 +42,12 @@ export default class Profile extends React.Component {
         </View>
 
         <View style={styles.form}>
-          <Text>email: {this.state.email}</Text>
-          <Text>name: {this.state.displayName}</Text>
+          <Text style={{ color: 'black' , textAlign: 'left' }}>Email: {this.state.email}</Text>
+          <Text style={{ color: 'black' , textAlign: 'left' }}>Name: {this.state.displayName}</Text>
         </View>
 
         <TouchableOpacity style={{ marginTop: 32 }} onPress={this.signOutUser}>
-          <Text style={{ color: '#0074E1' }}>Logout</Text>
+          <Text style={{ color: '#0074E1' , textAlign: 'center'}}>Logout</Text>
         </TouchableOpacity>
       </View>
     )
@@ -80,7 +80,8 @@ const styles = StyleSheet.create({
   },
   form: {
     marginVertical: 20,
-    marginHorizontal: 20
+    marginHorizontal: 20,
+    
   },
   back: {
     position: 'absolute',

@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, StatusBar, Image } from 'reac
 import * as firebase from 'firebase'
 import { Ionicons } from '@expo/vector-icons'
 import { Dimensions } from 'react-native'
-import Dialog, { DialogContent } from 'react-native-popup-dialog'
+import Dialog, { DialogTitle, DialogFooter,DialogButton } from 'react-native-popup-dialog'
 
 export default class Parking extends React.Component {
   static navigationOptions = {
@@ -33,10 +33,10 @@ export default class Parking extends React.Component {
           {/* Back button */}
           <TouchableOpacity style={styles.back} onPress={() => this.props.navigation.goBack()}>
             <Ionicons name="ios-arrow-back" size={32} />
-            <Text> Place</Text>
+            <Text></Text>
           </TouchableOpacity>
 
-          <Text style={styles.headerTitle}>ใส่ชื่อสถานที่</Text>
+          <Text style={styles.headerTitle}>Convention Hall</Text>
         </View>
 
         <View style={styles.form}>
@@ -46,61 +46,95 @@ export default class Parking extends React.Component {
             }}
           >
             <View style={styles.item}>
+              <Text style={{ alignSelf: 'center' }}>001</Text>
               <Image
                 style={{ width: Dimensions.get('window').width / 5, height: Dimensions.get('window').height / 5.2 }}
                 source={require('../../image/Green.png')}
               />
-              <Text style={{ alignSelf: 'center' }}>park001</Text>
             </View>
           </TouchableOpacity>
-          <Dialog
-            visible={this.state.visible}
+          <Dialog width={0.7}
+            visible={this.state.visible} rounded
             onTouchOutside={() => {
               this.setState({ visible: false })
             }}
-          >
-            <DialogContent>
-              <Text>oiioioi</Text>
-            </DialogContent>
+            dialogTitle={
+              <DialogTitle
+                title="Booking Park 001"
+                style={{
+                  backgroundColor: "white",
+                  alignSelf: "center",
+                  alignItems: "center"
+                }}
+                hasTitleBar={false}
+                align="left"
+              />
+            }
+            footer={
+                <DialogFooter>
+                  <DialogButton
+                    text="OK"
+                    style={{
+                      backgroundColor: "white",
+                      alignSelf: "center"
+                    }}
+                    bordered
+                    onPress={() => {
+                      this.setState({ visible: false })
+                    }}
+                    key="button-1"
+                  />
+                  <DialogButton
+                    text="CANCEL"
+                    bordered
+                    onPress={() => {
+                      this.setState({ visible: false })
+                    }}
+                    key="button-2"
+                  />
+                </DialogFooter>
+              }>
+
+        
           </Dialog>
 
           <TouchableOpacity onPress={this.handleBooking}>
             <View style={styles.item}>
+              <Text style={{ alignSelf: 'center' }}>002</Text>
               <Image
                 style={{ width: Dimensions.get('window').width / 5, height: Dimensions.get('window').height / 5.2 }}
                 source={require('../../image/Green.png')}
               />
-              <Text style={{ alignSelf: 'center' }}>park002</Text>
             </View>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={this.handleBooking}>
             <View style={styles.item}>
+              <Text style={{ alignSelf: 'center' }}>003</Text>
               <Image
                 style={{ width: Dimensions.get('window').width / 5, height: Dimensions.get('window').height / 5.2 }}
                 source={require('../../image/Green.png')}
               />
-              <Text style={{ alignSelf: 'center' }}>park003</Text>
             </View>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={this.handleBooking}>
             <View style={styles.item}>
+              <Text style={{ alignSelf: 'center' }}>004</Text>
               <Image
                 style={{ width: Dimensions.get('window').width / 5, height: Dimensions.get('window').height / 5.2 }}
                 source={require('../../image/Green.png')}
               />
-              <Text style={{ alignSelf: 'center' }}>park004</Text>
             </View>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={this.handleBooking}>
             <View style={styles.item}>
+              <Text style={{ alignSelf: 'center' }}>005</Text>
               <Image
                 style={{ width: Dimensions.get('window').width / 5, height: Dimensions.get('window').height / 5.2 }}
                 source={require('../../image/Green.png')}
               />
-              <Text style={{ alignSelf: 'center' }}>park005</Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -116,7 +150,7 @@ export default class Parking extends React.Component {
                 }}
                 source={require('../../image/Green.png')}
               />
-              <Text style={{ alignSelf: 'center' }}>park006</Text>
+              <Text style={{ alignSelf: 'center' }}>006</Text>
             </View>
           </TouchableOpacity>
 
@@ -130,7 +164,7 @@ export default class Parking extends React.Component {
                 }}
                 source={require('../../image/Green.png')}
               />
-              <Text style={{ alignSelf: 'center' }}>park007</Text>
+              <Text style={{ alignSelf: 'center' }}>007</Text>
             </View>
           </TouchableOpacity>
 
@@ -144,7 +178,7 @@ export default class Parking extends React.Component {
                 }}
                 source={require('../../image/Green.png')}
               />
-              <Text style={{ alignSelf: 'center' }}>park008</Text>
+              <Text style={{ alignSelf: 'center' }}>008</Text>
             </View>
           </TouchableOpacity>
 
@@ -158,7 +192,7 @@ export default class Parking extends React.Component {
                 }}
                 source={require('../../image/Green.png')}
               />
-              <Text style={{ alignSelf: 'center' }}>park009</Text>
+              <Text style={{ alignSelf: 'center' }}>009</Text>
             </View>
           </TouchableOpacity>
 
@@ -172,7 +206,7 @@ export default class Parking extends React.Component {
                 }}
                 source={require('../../image/Green.png')}
               />
-              <Text style={{ alignSelf: 'center' }}>park010</Text>
+              <Text style={{ alignSelf: 'center' }}>010</Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -219,6 +253,7 @@ const styles = StyleSheet.create({
   },
   form: {
     marginVertical: '10%',
+    marginTop: '25%',
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between'

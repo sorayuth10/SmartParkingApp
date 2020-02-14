@@ -104,9 +104,9 @@ export default class Home extends React.Component {
               <View style={styles.item}>
                 <Image
                   style={{ width: Dimensions.get('window').width / 2.02, height: 125 }}
-                  source={require('../../image/ConventionHall.jpg')}
+                  source={require('../../image/E12.jpg')}
                 />
-                <Text style={{ alignSelf: 'center' }}>ConventionHall</Text>
+                <Text style={{ alignSelf: 'center' }}>E12</Text>
               </View>
             </TouchableOpacity>
 
@@ -114,13 +114,13 @@ export default class Home extends React.Component {
               <View style={styles.item}>
                 <Image
                   style={{ width: Dimensions.get('window').width / 2.02, height: 125 }}
-                  source={require('../../image/ConventionHall.jpg')}
+                  source={require('../../image/Library.jpg')}
                 />
-                <Text style={{ alignSelf: 'center' }}>ConventionHall</Text>
+                <Text style={{ alignSelf: 'center' }}>Library</Text>
               </View>
             </TouchableOpacity>
 
-            <Text>{this.state.place}</Text>
+ 
 
           </View>
         </ScrollView>
@@ -157,7 +157,8 @@ const styles = StyleSheet.create({
     marginVertical: 20,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    marginTop: 40
   },
   menumore: {
     position: 'absolute',
