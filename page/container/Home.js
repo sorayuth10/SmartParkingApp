@@ -15,6 +15,7 @@ const List = styled.View`
   flex-wrap: wrap;
   justify-content: space-between;
 `
+
 export default class Home extends React.Component {
   //Menu Options
   _menu = null
@@ -54,15 +55,16 @@ export default class Home extends React.Component {
 
             firebase
               .database()
-              .ref('Devices/Node-' + num)
+              .ref('Devices/Node-' + num + '/Place')
               .on('value', (data) => {
                 let imgPlace = Object.values(data.toJSON())[0]
                 let namePlace = Object.values(data.toJSON())[1]
-                arrangePlace.push(namePlace)
+                arrangePlace.push({imgPlace,namePlace})
               })
           }
-          arrangePlace = arrangePlace.filter((item, index) => arrangePlace.indexOf(item) === index)
-          this.setState(() => ({ arrangePlace }))
+          const filteredArrangePlace = arrangePlace.filter(({namePlace}, index,selfs) => selfs.findIndex((self)=>self.namePlace === namePlace) === index)
+          console.log(filteredArrangePlace)
+          this.setState(() => ({ arrangePlace:filteredArrangePlace }))
         })
     }
   }
@@ -88,16 +90,16 @@ export default class Home extends React.Component {
     firebase.auth().signOut()
   }
   placeList() {
-    return this.state.arrangePlace.map((item, index) => (
+    return this.state.arrangePlace.map(({imgPlace,namePlace}, index) => (
       <React.Fragment>
         <TouchableOpacity onPress={this.handleParking}>
           <View style={styles.placeItem}>
             <Image
               style={{ width: Dimensions.get('window').width / 2.02, height: 125 }}
-              source={require('../../image/ConventionHall.jpg')}
+              source={{uri: imgPlace}}
             />
             <Text key={index} style={{ alignSelf: 'center' }}>
-              {item}
+              {namePlace}
             </Text>
           </View>
         </TouchableOpacity>
