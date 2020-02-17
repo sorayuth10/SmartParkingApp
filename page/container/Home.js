@@ -4,7 +4,17 @@ import * as firebase from 'firebase'
 import { Ionicons } from '@expo/vector-icons'
 import Menu, { MenuItem, MenuDivider } from 'react-native-material-menu'
 import { Dimensions } from 'react-native'
+import styled from 'styled-components/native'
 
+// CSS
+const Container = styled.View`
+  display: flex;
+`
+const List = styled.View`
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+`
 export default class Home extends React.Component {
   //Menu Options
   _menu = null
@@ -25,9 +35,7 @@ export default class Home extends React.Component {
     headerShown: false //remove header
   }
   state = {
-    // email: "",
-    // displayName: ""
-    place: ""
+    arrangePlace: []
   }
 
   componentDidMount() {
@@ -35,11 +43,33 @@ export default class Home extends React.Component {
       this.props.navigation.navigate('NewProfile')
     } else {
       // this.props.navigation.navigate('Home')
-        firebase.database().ref('Place/--keys--').on('value', (data) => {
+      let arrangePlace = []
+      firebase
+        .database()
+        .ref('Devices')
+        .on('value', (data) => {
           let place = Object.keys(data.toJSON()).length
-          this.setState({ place })
+          for (let i = 0; i < place; i++) {
+            var num = this.pad('' + (i + 1))
+
+            firebase
+              .database()
+              .ref('Devices/Node-' + num)
+              .on('value', (data) => {
+                let imgPlace = Object.values(data.toJSON())[0]
+                let namePlace = Object.values(data.toJSON())[1]
+                arrangePlace.push(namePlace)
+              })
+          }
+          arrangePlace = arrangePlace.filter((item, index) => arrangePlace.indexOf(item) === index)
+          this.setState(() => ({ arrangePlace }))
         })
     }
+  }
+
+  pad = (s) => {
+    while (s.length < 3) s = '0' + s
+    return s
   }
 
   handleProfile = () => {
@@ -57,15 +87,27 @@ export default class Home extends React.Component {
   signOutUser = () => {
     firebase.auth().signOut()
   }
-
-  /*CONCEPT fetching data to place page*/
-  //loop: n times
-  //// use forloop n times
-  //// n next times..
+  placeList() {
+    return this.state.arrangePlace.map((item, index) => (
+      <React.Fragment>
+        <TouchableOpacity onPress={this.handleParking}>
+          <View style={styles.placeItem}>
+            <Image
+              style={{ width: Dimensions.get('window').width / 2.02, height: 125 }}
+              source={require('../../image/ConventionHall.jpg')}
+            />
+            <Text key={index} style={{ alignSelf: 'center' }}>
+              {item}
+            </Text>
+          </View>
+        </TouchableOpacity>
+      </React.Fragment>
+    ))
+  }
 
   render() {
     return (
-      <View style={styles.container}>
+      <Container>
         {/* dark-content Status bar */}
         <StatusBar barStyle="dark-content"></StatusBar>
 
@@ -88,53 +130,16 @@ export default class Home extends React.Component {
             </Menu>
           </View>
         </View>
+
         <ScrollView>
-          <View style={styles.form}>
-            <TouchableOpacity onPress={this.handleParking}>
-              <View style={styles.item}>
-                <Image
-                  style={{ width: Dimensions.get('window').width / 2.02, height: 125 }}
-                  source={require('../../image/ConventionHall.jpg')}
-                />
-                <Text style={{ alignSelf: 'center' }}>ConventionHall</Text>
-              </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={this.handleParking}>
-              <View style={styles.item}>
-                <Image
-                  style={{ width: Dimensions.get('window').width / 2.02, height: 125 }}
-                  source={require('../../image/E12.jpg')}
-                />
-                <Text style={{ alignSelf: 'center' }}>E12</Text>
-              </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={this.handleParking}>
-              <View style={styles.item}>
-                <Image
-                  style={{ width: Dimensions.get('window').width / 2.02, height: 125 }}
-                  source={require('../../image/Library.jpg')}
-                />
-                <Text style={{ alignSelf: 'center' }}>Library</Text>
-              </View>
-            </TouchableOpacity>
-
- 
-
-          </View>
+          <List>{this.placeList()}</List>
         </ScrollView>
-      </View>
+      </Container>
     )
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1
-    // justifyContent: 'center',
-    // alignItems: 'center'
-  },
   header: {
     paddingTop: 35,
     paddingBottom: 10,
@@ -153,13 +158,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '500'
   },
-  form: {
-    marginVertical: 20,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-    marginTop: 40
-  },
   menumore: {
     position: 'absolute',
     top: 33,
@@ -168,8 +166,4 @@ const styles = StyleSheet.create({
     height: 35
     // backgroundColor: 'rgba(21, 22, 48, 0.1)',
   },
-  item: {
-    marginHorizontal: '.2%',
-    marginVertical: '3%'
-  }
 })
