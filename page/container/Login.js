@@ -32,7 +32,7 @@ export default class Login extends React.Component {
   }
 
   render() {
-    const keyboardVerticalOffset = Platform.OS === 'ios' ? 40 : 30
+    const keyboardVerticalOffset = Platform.OS === 'ios' ? 40 : 10
     LayoutAnimation.easeInEaseOut() //Animation
 
     return (
@@ -40,11 +40,12 @@ export default class Login extends React.Component {
         {/* dark-content Status bar */}
         <StatusBar barStyle="dark-content" backgroundColor="#16a085" animated={true} />
 
+        <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={keyboardVerticalOffset}>
         <View style={styles.LogoContainer}>
           <Image style={{ width: 150, height: 160, alignItems: 'center' }} source={require('../../image/logo.png')} />
         </View>
 
-        <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={keyboardVerticalOffset}>
+        
           <View style={styles.form}>
             <TextInput
               style={styles.input}
