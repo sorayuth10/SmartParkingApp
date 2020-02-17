@@ -19,15 +19,9 @@ const List = styled.View`
 export default class Home extends React.Component {
   //Menu Options
   _menu = null
-
   setMenuRef = (ref) => {
     this._menu = ref
   }
-
-  // hideMenu = () => {
-  //   this._menu.hide();
-  // };
-
   showMenu = () => {
     this._menu.show()
   }
@@ -49,29 +43,13 @@ export default class Home extends React.Component {
         .database()
         .ref('Devices')
         .on('value', (data) => {
-          let place = Object.keys(data.toJSON()).length
-          for (let i = 0; i < place; i++) {
-            var num = this.pad('' + (i + 1))
-
-            firebase
-              .database()
-              .ref('Devices/Node-' + num + '/Place')
-              .on('value', (data) => {
-                let imgPlace = Object.values(data.toJSON())[0]
-                let namePlace = Object.values(data.toJSON())[1]
-                arrangePlace.push({imgPlace,namePlace})
-              })
-          }
-          const filteredArrangePlace = arrangePlace.filter(({namePlace}, index,selfs) => selfs.findIndex((self)=>self.namePlace === namePlace) === index)
-          console.log(filteredArrangePlace)
-          this.setState(() => ({ arrangePlace:filteredArrangePlace }))
+          arrangePlace = Object.values(data.val()).map(({ Place: { img, name } }) => ({ img, name }))
+          const filteredArrangePlace = arrangePlace.filter(
+            ({ name }, index, selfs) => selfs.findIndex((self) => self.name === name) === index
+          )
+          this.setState(() => ({ arrangePlace: filteredArrangePlace }))
         })
     }
-  }
-
-  pad = (s) => {
-    while (s.length < 3) s = '0' + s
-    return s
   }
 
   handleProfile = () => {
@@ -90,16 +68,13 @@ export default class Home extends React.Component {
     firebase.auth().signOut()
   }
   placeList() {
-    return this.state.arrangePlace.map(({imgPlace,namePlace}, index) => (
+    return this.state.arrangePlace.map(({ img, name }, index) => (
       <React.Fragment>
         <TouchableOpacity onPress={this.handleParking}>
           <View style={styles.placeItem}>
-            <Image
-              style={{ width: Dimensions.get('window').width / 2.02, height: 125 }}
-              source={{uri: imgPlace}}
-            />
+            <Image style={{ width: Dimensions.get('window').width / 2.02, height: 125 }} source={{ uri: img }} />
             <Text key={index} style={{ alignSelf: 'center' }}>
-              {namePlace}
+              {name}
             </Text>
           </View>
         </TouchableOpacity>
@@ -167,5 +142,5 @@ const styles = StyleSheet.create({
     width: 40,
     height: 35
     // backgroundColor: 'rgba(21, 22, 48, 0.1)',
-  },
+  }
 })
