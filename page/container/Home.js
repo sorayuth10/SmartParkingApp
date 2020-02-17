@@ -69,7 +69,7 @@ export default class Home extends React.Component {
   }
   placeList() {
     return this.state.arrangePlace.map(({ img, name }, index) => (
-      <React.Fragment>
+      <React.Fragment key={index}>
         <TouchableOpacity onPress={this.handleParking}>
           <View style={styles.placeItem}>
             <Image style={{ width: Dimensions.get('window').width / 2.02, height: 125 }} source={{ uri: img }} />
