@@ -34,8 +34,8 @@ export default class Register extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        {/* dark-content Status bar */}
-        <StatusBar barStyle="dark-content"></StatusBar>
+      {/* dark-content Status bar */}
+      <StatusBar barStyle="dark-content" backgroundColor="#EBECF4" animated={true} />
 
         {/* Back button */}
         <TouchableOpacity style={styles.back} onPress={() => this.props.navigation.goBack()}>
