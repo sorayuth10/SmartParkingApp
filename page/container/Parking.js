@@ -1,25 +1,31 @@
-import React from 'react'
+import React , { useState, useEffect } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, StatusBar, Image } from 'react-native'
 import * as firebase from 'firebase'
 import { Ionicons } from '@expo/vector-icons'
 import { Dimensions } from 'react-native'
 import Dialog, { DialogTitle, DialogFooter,DialogButton } from 'react-native-popup-dialog'
 
-export default class Parking extends React.Component {
-  static navigationOptions = {
-    headerShown: false //remove header
-  }
-  state = {
-    // email: "",
-    // displayName: ""
-  }
+export const Parking = (props) => {
+  const { navigation } = props
+  Parking.navigationOptions = {headerShown: false}
 
-  componentDidMount() {
-    // const { email, displayName } = firebase.auth().currentUser
-    // this.setState({ email, displayName })
-  }
+  useEffect(() => {
+    const fetching = async () => {
+      try {
+        const namePlace = navigation.getParam('namePlace', 'none')
+        this.setState(() => ({ namePlace: namePlace }))
+      } catch (e) {
+        console.log(e)
+      }
+    };fetching()
+  },[])
 
-  handleBooking() {
+  const [Test,setTest] = useState({
+    defalutTest: ''
+    //setstate
+  })
+
+  handleBooking = () => {
     //จองงง
   }
 

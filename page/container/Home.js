@@ -57,7 +57,7 @@ export default class Home extends React.Component {
     this.props.navigation.navigate('Profile')
   }
   handleParking = () => {
-    this.props.navigation.navigate('Parking')
+    this.props.navigation.navigate('Parking',{namePlace: {name}})
     //send params...
   }
   handleAbouUs = () => {
