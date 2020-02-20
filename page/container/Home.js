@@ -86,7 +86,7 @@ export default class Home extends React.Component {
     return (
       <Container>
         {/* dark-content Status bar */}
-        <StatusBar barStyle="dark-content"></StatusBar>
+        <StatusBar barStyle="dark-content" backgroundColor="#EBECF4" animated={true} />
 
         <View style={styles.header}>
           <Text style={styles.headerTitle}>Place</Text>

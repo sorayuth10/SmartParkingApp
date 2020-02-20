@@ -33,7 +33,7 @@ export const Parking = (props) => {
     return (
       <View style={styles.container}>
         {/* dark-content Status bar */}
-        <StatusBar barStyle="dark-content" backgroundColor="#16a085" animated={true} />
+        <StatusBar barStyle="dark-content" backgroundColor="#EBECF4" animated={true} />
 
         <View style={styles.header}>
           {/* Back button */}
