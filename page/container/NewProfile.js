@@ -4,10 +4,6 @@ import * as firebase from 'firebase'
 import { Ionicons } from '@expo/vector-icons'
 
 export default class Register extends React.Component {
-  static navigationOptions = {
-    headerShown: false //remove header
-  }
-
   state = {
     brand: '',
     license: '',
@@ -56,8 +52,8 @@ export default class Register extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-      {/* dark-content Status bar */}
-      <StatusBar barStyle="dark-content" backgroundColor="#EBECF4" animated={true} />
+        {/* dark-content Status bar */}
+        <StatusBar barStyle="dark-content" backgroundColor="#EBECF4" animated={true} />
 
         {/* Back button
       <TouchableOpacity style={styles.back} onPress={() => this.props.navigation.goBack()}>
