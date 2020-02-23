@@ -4,9 +4,6 @@ import * as firebase from 'firebase'
 import { Ionicons } from '@expo/vector-icons'
 
 export default class Profile extends React.Component {
-  static navigationOptions = {
-    headerShown: false //remove header
-  }
   state = {
     // email: "",
     // displayName: ""
@@ -23,8 +20,8 @@ export default class Profile extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-      {/* dark-content Status bar */}
-      <StatusBar barStyle="dark-content" backgroundColor="#EBECF4" animated={true} />
+        {/* dark-content Status bar */}
+        <StatusBar barStyle="dark-content" backgroundColor="#EBECF4" animated={true} />
 
         {/* Back button
         <TouchableOpacity style={styles.back} onPress={() => this.props.navigation.goBack()}>
@@ -42,12 +39,12 @@ export default class Profile extends React.Component {
         </View>
 
         <View style={styles.form}>
-          <Text style={{ color: 'black' , textAlign: 'center' }}>Email: {this.state.email}</Text>
-          <Text style={{ color: 'black' , textAlign: 'center' }}>Name: {this.state.displayName}</Text>
+          <Text style={{ color: 'black', textAlign: 'center' }}>Email: {this.state.email}</Text>
+          <Text style={{ color: 'black', textAlign: 'center' }}>Name: {this.state.displayName}</Text>
         </View>
 
         <TouchableOpacity style={{ marginTop: 32 }} onPress={this.signOutUser}>
-          <Text style={{ color: '#0074E1' , textAlign: 'center'}}>Logout</Text>
+          <Text style={{ color: '#0074E1', textAlign: 'center' }}>Logout</Text>
         </TouchableOpacity>
       </View>
     )
@@ -80,9 +77,7 @@ const styles = StyleSheet.create({
   },
   form: {
     marginVertical: 20,
-    marginHorizontal: 20,
-    
-    
+    marginHorizontal: 20
   },
   back: {
     position: 'absolute',

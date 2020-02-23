@@ -15,18 +15,32 @@ import { firebaseConfig } from '../config'
 
 firebase.initializeApp(firebaseConfig)
 
-const AppStack = createStackNavigator({
-  Home: Home,
-  NewProfile: NewProfile,
-  Profile: Profile,
-  Parking: Parking,
-  AboutUs: AboutUs
-})
+const AppStack = createStackNavigator(
+  {
+    Home: Home,
+    NewProfile: NewProfile,
+    Profile: Profile,
+    Parking: Parking,
+    AboutUs: AboutUs
+  },
+  {
+    defaultNavigationOptions: {
+      headerShown: false
+    }
+  }
+)
 
-const AuthStack = createStackNavigator({
-  Login: Login,
-  Register: Register
-})
+const AuthStack = createStackNavigator(
+  {
+    Login: Login,
+    Register: Register
+  },
+  {
+    defaultNavigationOptions: {
+      headerShown: false
+    }
+  }
+)
 
 export default createAppContainer(
   createSwitchNavigator(

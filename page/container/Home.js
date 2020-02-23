@@ -26,9 +26,6 @@ export default class Home extends React.Component {
     this._menu.show()
   }
 
-  static navigationOptions = {
-    headerShown: false //remove header
-  }
   state = {
     arrangePlace: []
   }
@@ -57,7 +54,7 @@ export default class Home extends React.Component {
     this.props.navigation.navigate('Profile')
   }
   handleParking = () => {
-    this.props.navigation.navigate('Parking',{namePlace: {name}})
+    this.props.navigation.navigate('Parking', { namePlace: { name } })
     //send params...
   }
   handleAbouUs = () => {

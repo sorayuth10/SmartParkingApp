@@ -1,12 +1,8 @@
 import React from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, StatusBar, Image,  ScrollView } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, StatusBar, Image, ScrollView } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 
 export default class AboutUs extends React.Component {
-  static navigationOptions = {
-    headerShown: false //remove header
-  }
-
   render() {
     return (
       <View style={styles.container}>
@@ -28,37 +24,30 @@ export default class AboutUs extends React.Component {
           </TouchableOpacity>
         </View>
 
-        
-
         <ScrollView>
-      
-        <View style={styles.LogoContainer}>
-        
-          <Image style={{ width: 350, height: 180, alignItems: 'center' }} source={require('../../image/km.jpg')} />
+          <View style={styles.LogoContainer}>
+            <Image style={{ width: 350, height: 180, alignItems: 'center' }} source={require('../../image/km.jpg')} />
+          </View>
 
-        </View>
-       
-        <View style={styles.form}>
-          <Image style={{ width: 170, height: 160 , alignItems: 'center' }} source={require('../../image/Por.jpg')} />
-          <Text style={{ color: 'black' , textAlign: 'center' , fontWeight: 'bold'}}>NITHI    SEMANUANG</Text>
-          <Text style={{ color: 'black' , textAlign: 'center' , fontWeight: 'bold'}}></Text>
-          <Image style={{ width: 170, height: 160, alignItems: 'center' }} source={require('../../image/Nine.jpg')} />
-          <Text style={{ color: 'black' , textAlign: 'center' , fontWeight: 'bold'}}>PAPON    PROMMOOL</Text>
-          <Text style={{ color: 'black' , textAlign: 'center' , fontWeight: 'bold'}}></Text>
-          <Image style={{ width: 170, height: 160, alignItems: 'center' }} source={require('../../image/O.jpg')} />
-          <Text style={{ color: 'black' , textAlign: 'center' , fontWeight: 'bold'}}>SORAYUTH    CHAROENSRISAN</Text>
-        </View>
+          <View style={styles.form}>
+            <Image style={{ width: 170, height: 160, alignItems: 'center' }} source={require('../../image/Por.jpg')} />
+            <Text style={{ color: 'black', textAlign: 'center', fontWeight: 'bold' }}>NITHI SEMANUANG</Text>
+            <Text style={{ color: 'black', textAlign: 'center', fontWeight: 'bold' }}></Text>
+            <Image style={{ width: 170, height: 160, alignItems: 'center' }} source={require('../../image/Nine.jpg')} />
+            <Text style={{ color: 'black', textAlign: 'center', fontWeight: 'bold' }}>PAPON PROMMOOL</Text>
+            <Text style={{ color: 'black', textAlign: 'center', fontWeight: 'bold' }}></Text>
+            <Image style={{ width: 170, height: 160, alignItems: 'center' }} source={require('../../image/O.jpg')} />
+            <Text style={{ color: 'black', textAlign: 'center', fontWeight: 'bold' }}>SORAYUTH CHAROENSRISAN</Text>
+          </View>
         </ScrollView>
       </View>
-      
     )
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-  
+    flex: 1
   },
 
   header: {
@@ -81,7 +70,6 @@ const styles = StyleSheet.create({
   },
 
   LogoContainer: {
-    
     alignItems: 'center'
   },
 
@@ -90,8 +78,6 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     marginTop: 25,
     alignItems: 'center'
- 
- 
   },
   back: {
     position: 'absolute',

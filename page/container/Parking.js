@@ -1,13 +1,13 @@
-import React , { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, StatusBar, Image } from 'react-native'
 import * as firebase from 'firebase'
 import { Ionicons } from '@expo/vector-icons'
 import { Dimensions } from 'react-native'
-import Dialog, { DialogTitle, DialogFooter,DialogButton } from 'react-native-popup-dialog'
+import Dialog, { DialogTitle, DialogFooter, DialogButton } from 'react-native-popup-dialog'
 
 export const Parking = (props) => {
   const { navigation } = props
-  Parking.navigationOptions = {headerShown: false}
+  Parking.navigationOptions = { headerShown: false }
 
   useEffect(() => {
     const fetching = async () => {
@@ -17,10 +17,11 @@ export const Parking = (props) => {
       } catch (e) {
         console.log(e)
       }
-    };fetching()
-  },[])
+    }
+    fetching()
+  }, [])
 
-  const [Test,setTest] = useState({
+  const [Test, setTest] = useState({
     defalutTest: ''
     //setstate
   })
@@ -29,197 +30,196 @@ export const Parking = (props) => {
     //จองงง
   }
 
-  render() {
-    return (
-      <View style={styles.container}>
-        {/* dark-content Status bar */}
-        <StatusBar barStyle="dark-content" backgroundColor="#EBECF4" animated={true} />
+  return (
+    <View style={styles.container}>
+      {/* dark-content Status bar */}
+      <StatusBar barStyle="dark-content" backgroundColor="#EBECF4" animated={true} />
 
-        <View style={styles.header}>
-          {/* Back button */}
-          <TouchableOpacity style={styles.back} onPress={() => this.props.navigation.goBack()}>
-            <Ionicons name="ios-arrow-back" size={32} />
-            <Text></Text>
-          </TouchableOpacity>
+      <View style={styles.header}>
+        {/* Back button */}
+        <TouchableOpacity style={styles.back} onPress={() => this.props.navigation.goBack()}>
+          <Ionicons name="ios-arrow-back" size={32} />
+          <Text></Text>
+        </TouchableOpacity>
 
-          <Text style={styles.headerTitle}>Convention Hall</Text>
-        </View>
-
-        <View style={styles.form}>
-          <TouchableOpacity
-            onPress={() => {
-              this.setState({ visible: true })
-            }}
-          >
-            <View style={styles.item}>
-              <Text style={{ alignSelf: 'center' }}>001</Text>
-              <Image
-                style={{ width: Dimensions.get('window').width / 5, height: Dimensions.get('window').height / 5.2 }}
-                source={require('../../image/Green.png')}
-              />
-            </View>
-          </TouchableOpacity>
-          <Dialog width={0.7}
-            visible={this.state.visible} rounded
-            onTouchOutside={() => {
-              this.setState({ visible: false })
-            }}
-            dialogTitle={
-              <DialogTitle
-                title="Booking Park 001"
-                style={{
-                  backgroundColor: "white",
-                  alignSelf: "center",
-                  alignItems: "center"
-                }}
-                hasTitleBar={false}
-                align="left"
-              />
-            }
-            footer={
-                <DialogFooter>
-                  <DialogButton
-                    text="OK"
-                    style={{
-                      backgroundColor: "white",
-                      alignSelf: "center"
-                    }}
-                    bordered
-                    onPress={() => {
-                      this.setState({ visible: false })
-                    }}
-                    key="button-1"
-                  />
-                  <DialogButton
-                    text="CANCEL"
-                    bordered
-                    onPress={() => {
-                      this.setState({ visible: false })
-                    }}
-                    key="button-2"
-                  />
-                </DialogFooter>
-              }>
-
-        
-          </Dialog>
-
-          <TouchableOpacity onPress={this.handleBooking}>
-            <View style={styles.item}>
-              <Text style={{ alignSelf: 'center' }}>002</Text>
-              <Image
-                style={{ width: Dimensions.get('window').width / 5, height: Dimensions.get('window').height / 5.2 }}
-                source={require('../../image/Green.png')}
-              />
-            </View>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={this.handleBooking}>
-            <View style={styles.item}>
-              <Text style={{ alignSelf: 'center' }}>003</Text>
-              <Image
-                style={{ width: Dimensions.get('window').width / 5, height: Dimensions.get('window').height / 5.2 }}
-                source={require('../../image/Green.png')}
-              />
-            </View>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={this.handleBooking}>
-            <View style={styles.item}>
-              <Text style={{ alignSelf: 'center' }}>004</Text>
-              <Image
-                style={{ width: Dimensions.get('window').width / 5, height: Dimensions.get('window').height / 5.2 }}
-                source={require('../../image/Green.png')}
-              />
-            </View>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={this.handleBooking}>
-            <View style={styles.item}>
-              <Text style={{ alignSelf: 'center' }}>005</Text>
-              <Image
-                style={{ width: Dimensions.get('window').width / 5, height: Dimensions.get('window').height / 5.2 }}
-                source={require('../../image/Green.png')}
-              />
-            </View>
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.form}>
-          <TouchableOpacity onPress={this.handleBooking}>
-            <View style={styles.item}>
-              <Image
-                style={{
-                  width: Dimensions.get('window').width / 5,
-                  height: Dimensions.get('window').height / 5.2,
-                  transform: [{ rotate: '180deg' }]
-                }}
-                source={require('../../image/Green.png')}
-              />
-              <Text style={{ alignSelf: 'center' }}>006</Text>
-            </View>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={this.handleBooking}>
-            <View style={styles.item}>
-              <Image
-                style={{
-                  width: Dimensions.get('window').width / 5,
-                  height: Dimensions.get('window').height / 5.2,
-                  transform: [{ rotate: '180deg' }]
-                }}
-                source={require('../../image/Green.png')}
-              />
-              <Text style={{ alignSelf: 'center' }}>007</Text>
-            </View>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={this.handleBooking}>
-            <View style={styles.item}>
-              <Image
-                style={{
-                  width: Dimensions.get('window').width / 5,
-                  height: Dimensions.get('window').height / 5.2,
-                  transform: [{ rotate: '180deg' }]
-                }}
-                source={require('../../image/Green.png')}
-              />
-              <Text style={{ alignSelf: 'center' }}>008</Text>
-            </View>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={this.handleBooking}>
-            <View style={styles.item}>
-              <Image
-                style={{
-                  width: Dimensions.get('window').width / 5,
-                  height: Dimensions.get('window').height / 5.2,
-                  transform: [{ rotate: '180deg' }]
-                }}
-                source={require('../../image/Green.png')}
-              />
-              <Text style={{ alignSelf: 'center' }}>009</Text>
-            </View>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={this.handleBooking}>
-            <View style={styles.item}>
-              <Image
-                style={{
-                  width: Dimensions.get('window').width / 5,
-                  height: Dimensions.get('window').height / 5.2,
-                  transform: [{ rotate: '180deg' }]
-                }}
-                source={require('../../image/Green.png')}
-              />
-              <Text style={{ alignSelf: 'center' }}>010</Text>
-            </View>
-          </TouchableOpacity>
-        </View>
+        <Text style={styles.headerTitle}>Convention Hall</Text>
       </View>
-    )
-  }
+
+      <View style={styles.form}>
+        <TouchableOpacity
+          onPress={() => {
+            this.setState({ visible: true })
+          }}
+        >
+          <View style={styles.item}>
+            <Text style={{ alignSelf: 'center' }}>001</Text>
+            <Image
+              style={{ width: Dimensions.get('window').width / 5, height: Dimensions.get('window').height / 5.2 }}
+              source={require('../../image/Green.png')}
+            />
+          </View>
+        </TouchableOpacity>
+        <Dialog
+          width={0.7}
+          visible={this.state.visible}
+          rounded
+          onTouchOutside={() => {
+            this.setState({ visible: false })
+          }}
+          dialogTitle={
+            <DialogTitle
+              title="Booking Park 001"
+              style={{
+                backgroundColor: 'white',
+                alignSelf: 'center',
+                alignItems: 'center'
+              }}
+              hasTitleBar={false}
+              align="left"
+            />
+          }
+          footer={
+            <DialogFooter>
+              <DialogButton
+                text="OK"
+                style={{
+                  backgroundColor: 'white',
+                  alignSelf: 'center'
+                }}
+                bordered
+                onPress={() => {
+                  this.setState({ visible: false })
+                }}
+                key="button-1"
+              />
+              <DialogButton
+                text="CANCEL"
+                bordered
+                onPress={() => {
+                  this.setState({ visible: false })
+                }}
+                key="button-2"
+              />
+            </DialogFooter>
+          }
+        ></Dialog>
+
+        <TouchableOpacity onPress={this.handleBooking}>
+          <View style={styles.item}>
+            <Text style={{ alignSelf: 'center' }}>002</Text>
+            <Image
+              style={{ width: Dimensions.get('window').width / 5, height: Dimensions.get('window').height / 5.2 }}
+              source={require('../../image/Green.png')}
+            />
+          </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={this.handleBooking}>
+          <View style={styles.item}>
+            <Text style={{ alignSelf: 'center' }}>003</Text>
+            <Image
+              style={{ width: Dimensions.get('window').width / 5, height: Dimensions.get('window').height / 5.2 }}
+              source={require('../../image/Green.png')}
+            />
+          </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={this.handleBooking}>
+          <View style={styles.item}>
+            <Text style={{ alignSelf: 'center' }}>004</Text>
+            <Image
+              style={{ width: Dimensions.get('window').width / 5, height: Dimensions.get('window').height / 5.2 }}
+              source={require('../../image/Green.png')}
+            />
+          </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={this.handleBooking}>
+          <View style={styles.item}>
+            <Text style={{ alignSelf: 'center' }}>005</Text>
+            <Image
+              style={{ width: Dimensions.get('window').width / 5, height: Dimensions.get('window').height / 5.2 }}
+              source={require('../../image/Green.png')}
+            />
+          </View>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.form}>
+        <TouchableOpacity onPress={this.handleBooking}>
+          <View style={styles.item}>
+            <Image
+              style={{
+                width: Dimensions.get('window').width / 5,
+                height: Dimensions.get('window').height / 5.2,
+                transform: [{ rotate: '180deg' }]
+              }}
+              source={require('../../image/Green.png')}
+            />
+            <Text style={{ alignSelf: 'center' }}>006</Text>
+          </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={this.handleBooking}>
+          <View style={styles.item}>
+            <Image
+              style={{
+                width: Dimensions.get('window').width / 5,
+                height: Dimensions.get('window').height / 5.2,
+                transform: [{ rotate: '180deg' }]
+              }}
+              source={require('../../image/Green.png')}
+            />
+            <Text style={{ alignSelf: 'center' }}>007</Text>
+          </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={this.handleBooking}>
+          <View style={styles.item}>
+            <Image
+              style={{
+                width: Dimensions.get('window').width / 5,
+                height: Dimensions.get('window').height / 5.2,
+                transform: [{ rotate: '180deg' }]
+              }}
+              source={require('../../image/Green.png')}
+            />
+            <Text style={{ alignSelf: 'center' }}>008</Text>
+          </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={this.handleBooking}>
+          <View style={styles.item}>
+            <Image
+              style={{
+                width: Dimensions.get('window').width / 5,
+                height: Dimensions.get('window').height / 5.2,
+                transform: [{ rotate: '180deg' }]
+              }}
+              source={require('../../image/Green.png')}
+            />
+            <Text style={{ alignSelf: 'center' }}>009</Text>
+          </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={this.handleBooking}>
+          <View style={styles.item}>
+            <Image
+              style={{
+                width: Dimensions.get('window').width / 5,
+                height: Dimensions.get('window').height / 5.2,
+                transform: [{ rotate: '180deg' }]
+              }}
+              source={require('../../image/Green.png')}
+            />
+            <Text style={{ alignSelf: 'center' }}>010</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+    </View>
+  )
 }
+export default Parking
 
 const styles = StyleSheet.create({
   container: {

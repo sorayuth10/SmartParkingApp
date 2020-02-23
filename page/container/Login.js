@@ -14,9 +14,6 @@ import {
 import * as firebase from 'firebase'
 
 export default class Login extends React.Component {
-  static navigationOptions = {
-    headerShown: false //remove header
-  }
   state = {
     email: '',
     password: '',
@@ -41,11 +38,10 @@ export default class Login extends React.Component {
         <StatusBar barStyle="dark-content" backgroundColor="#EBECF4" animated={true} />
 
         <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={keyboardVerticalOffset}>
-        <View style={styles.LogoContainer}>
-          <Image style={{ width: 150, height: 160, alignItems: 'center' }} source={require('../../image/logo.png')} />
-        </View>
+          <View style={styles.LogoContainer}>
+            <Image style={{ width: 150, height: 160, alignItems: 'center' }} source={require('../../image/logo.png')} />
+          </View>
 
-        
           <View style={styles.form}>
             <TextInput
               style={styles.input}
