@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, StatusBar, Image, Dimensions } from 'react-native'
 import * as firebase from 'firebase'
 import { Ionicons } from '@expo/vector-icons'
-import Dialog, { DialogTitle, DialogFooter, DialogButton } from 'react-native-popup-dialog'
+import {Dialog, DialogTitle, DialogFooter, DialogButton } from 'react-native-popup-dialog'
 
 export const Parking = (props) => {
   const { navigation } = props
