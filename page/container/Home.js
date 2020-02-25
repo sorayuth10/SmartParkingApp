@@ -1,9 +1,8 @@
 import React from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, StatusBar, Image, ScrollView } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, StatusBar, Image, ScrollView, Dimensions } from 'react-native'
 import * as firebase from 'firebase'
 import { Ionicons } from '@expo/vector-icons'
 import Menu, { MenuItem, MenuDivider } from 'react-native-material-menu'
-import { Dimensions } from 'react-native'
 import styled from 'styled-components/native'
 
 // CSS
@@ -68,7 +67,7 @@ export default class Home extends React.Component {
   placeList() {
     return this.state.arrangePlace.map(({ img, name }, index) => (
       <React.Fragment key={index}>
-        <TouchableOpacity onPress={() => this.props.navigation.navigate('Parking', { namePlace: { name } })}> 
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('Parking', { namePlace: {name} })}> 
           <View style={styles.placeItem}>
             <Image style={{ width: Dimensions.get('window').width / 2.02, height: 125 }} source={{ uri: img }} />
             <Text key={index} style={{ alignSelf: 'center' }}>

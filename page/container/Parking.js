@@ -1,22 +1,21 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, StatusBar, Image } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, StatusBar, Image, Dimensions } from 'react-native'
 import * as firebase from 'firebase'
 import { Ionicons } from '@expo/vector-icons'
-import { Dimensions } from 'react-native'
 import Dialog, { DialogTitle, DialogFooter, DialogButton } from 'react-native-popup-dialog'
 
 export const Parking = (props) => {
   const { navigation } = props
 
-  const [namePlace, setNamePlace] = useState({namePlace : namePlace })
+  const [defaultNamePlace, setNamePlace] = useState({ namePlace: "default" })
 
-  const [PopUpDialog, setPopUpDialog] = useState({visible: false})
+  const [PopUpDialog, setPopUpDialog] = useState({ visible: false })
 
   useEffect(() => {
     const fetching = async () => {
       try {
-        const namePlace = navigation.getParam('namePlace', 'none')
-        setNamePlace({namePlace:namePlace})
+        const paramsNamePlace = navigation.getParam('namePlace', '')
+        setNamePlace({ namePlace : paramsNamePlace })
       } catch (e) {
         console.log(e)
       }
@@ -25,7 +24,7 @@ export const Parking = (props) => {
   }, [])
 
   const handleBooking = () => {
-    console.log('555')
+    console.log('Booking')
     //จองงง
   }
 
@@ -40,7 +39,7 @@ export const Parking = (props) => {
           <Ionicons name="ios-arrow-back" size={32} />
         </TouchableOpacity>
 
-        <Text style={styles.headerTitle}>Convention Hall</Text>
+        <Text style={styles.headerTitle}>{defaultNamePlace.namePlace.name}</Text>
       </View>
 
       <View style={styles.form}>
