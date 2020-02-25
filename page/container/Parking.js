@@ -7,13 +7,16 @@ import Dialog, { DialogTitle, DialogFooter, DialogButton } from 'react-native-po
 
 export const Parking = (props) => {
   const { navigation } = props
-  Parking.navigationOptions = { headerShown: false }
+
+  const [namePlace, setNamePlace] = useState({namePlace : namePlace })
+
+  const [PopUpDialog, setPopUpDialog] = useState({visible: false})
 
   useEffect(() => {
     const fetching = async () => {
       try {
         const namePlace = navigation.getParam('namePlace', 'none')
-        this.setState(() => ({ namePlace: namePlace }))
+        setNamePlace({namePlace:namePlace})
       } catch (e) {
         console.log(e)
       }
@@ -21,12 +24,8 @@ export const Parking = (props) => {
     fetching()
   }, [])
 
-  const [Test, setTest] = useState({
-    defalutTest: ''
-    //setstate
-  })
-
-  handleBooking = () => {
+  const handleBooking = () => {
+    console.log('555')
     //จองงง
   }
 
@@ -37,9 +36,8 @@ export const Parking = (props) => {
 
       <View style={styles.header}>
         {/* Back button */}
-        <TouchableOpacity style={styles.back} onPress={() => this.props.navigation.goBack()}>
+        <TouchableOpacity style={styles.back} onPress={() => navigation.goBack()}>
           <Ionicons name="ios-arrow-back" size={32} />
-          <Text></Text>
         </TouchableOpacity>
 
         <Text style={styles.headerTitle}>Convention Hall</Text>
@@ -48,7 +46,7 @@ export const Parking = (props) => {
       <View style={styles.form}>
         <TouchableOpacity
           onPress={() => {
-            this.setState({ visible: true })
+            setPopUpDialog({ visible: true })
           }}
         >
           <View style={styles.item}>
@@ -61,10 +59,10 @@ export const Parking = (props) => {
         </TouchableOpacity>
         <Dialog
           width={0.7}
-          visible={this.state.visible}
+          visible={PopUpDialog.visible}
           rounded
           onTouchOutside={() => {
-            this.setState({ visible: false })
+            setPopUpDialog({ visible: false })
           }}
           dialogTitle={
             <DialogTitle
@@ -88,7 +86,7 @@ export const Parking = (props) => {
                 }}
                 bordered
                 onPress={() => {
-                  this.setState({ visible: false })
+                  setPopUpDialog({ visible: false })
                 }}
                 key="button-1"
               />
@@ -96,7 +94,7 @@ export const Parking = (props) => {
                 text="CANCEL"
                 bordered
                 onPress={() => {
-                  this.setState({ visible: false })
+                  setPopUpDialog({ visible: false })
                 }}
                 key="button-2"
               />
@@ -104,7 +102,7 @@ export const Parking = (props) => {
           }
         ></Dialog>
 
-        <TouchableOpacity onPress={this.handleBooking}>
+        <TouchableOpacity onPress={() => handleBooking()}>
           <View style={styles.item}>
             <Text style={{ alignSelf: 'center' }}>002</Text>
             <Image
@@ -114,7 +112,7 @@ export const Parking = (props) => {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={this.handleBooking}>
+        <TouchableOpacity onPress={() => handleBooking()}>
           <View style={styles.item}>
             <Text style={{ alignSelf: 'center' }}>003</Text>
             <Image
@@ -124,7 +122,7 @@ export const Parking = (props) => {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={this.handleBooking}>
+        <TouchableOpacity onPress={() => handleBooking()}>
           <View style={styles.item}>
             <Text style={{ alignSelf: 'center' }}>004</Text>
             <Image
@@ -134,7 +132,7 @@ export const Parking = (props) => {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={this.handleBooking}>
+        <TouchableOpacity onPress={() => handleBooking()}>
           <View style={styles.item}>
             <Text style={{ alignSelf: 'center' }}>005</Text>
             <Image
@@ -146,7 +144,7 @@ export const Parking = (props) => {
       </View>
 
       <View style={styles.form}>
-        <TouchableOpacity onPress={this.handleBooking}>
+        <TouchableOpacity onPress={() => handleBooking()}>
           <View style={styles.item}>
             <Image
               style={{
@@ -160,7 +158,7 @@ export const Parking = (props) => {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={this.handleBooking}>
+        <TouchableOpacity onPress={() => handleBooking()}>
           <View style={styles.item}>
             <Image
               style={{
@@ -174,7 +172,7 @@ export const Parking = (props) => {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={this.handleBooking}>
+        <TouchableOpacity onPress={() => handleBooking()}>
           <View style={styles.item}>
             <Image
               style={{
@@ -188,7 +186,7 @@ export const Parking = (props) => {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={this.handleBooking}>
+        <TouchableOpacity onPress={() => handleBooking()}>
           <View style={styles.item}>
             <Image
               style={{
@@ -202,7 +200,7 @@ export const Parking = (props) => {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={this.handleBooking}>
+        <TouchableOpacity onPress={() => handleBooking()}>
           <View style={styles.item}>
             <Image
               style={{

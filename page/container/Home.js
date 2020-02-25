@@ -53,10 +53,11 @@ export default class Home extends React.Component {
     this._menu.hide()
     this.props.navigation.navigate('Profile')
   }
-  handleParking = () => {
-    this.props.navigation.navigate('Parking', { namePlace: { name } })
-    //send params...
-  }
+  // handleParking = (name) => {
+  //   this.props.navigation.navigate('Parking', { namePlace: { name } })
+  //   console.log(name)
+  //   //send params...
+  // }
   handleAbouUs = () => {
     this._menu.hide()
     this.props.navigation.navigate('AboutUs')
@@ -67,7 +68,7 @@ export default class Home extends React.Component {
   placeList() {
     return this.state.arrangePlace.map(({ img, name }, index) => (
       <React.Fragment key={index}>
-        <TouchableOpacity onPress={this.handleParking}>
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('Parking', { namePlace: { name } })}> 
           <View style={styles.placeItem}>
             <Image style={{ width: Dimensions.get('window').width / 2.02, height: 125 }} source={{ uri: img }} />
             <Text key={index} style={{ alignSelf: 'center' }}>
