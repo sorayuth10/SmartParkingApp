@@ -34,7 +34,6 @@ export default class Profile extends React.Component {
           {/* Back button */}
           <TouchableOpacity style={styles.back} onPress={() => this.props.navigation.goBack()}>
             <Ionicons name="ios-arrow-back" size={32}></Ionicons>
-            <Text> Place</Text>
           </TouchableOpacity>
         </View>
 
