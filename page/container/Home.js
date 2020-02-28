@@ -5,6 +5,8 @@ import { Ionicons } from '@expo/vector-icons'
 import Menu, { MenuItem, MenuDivider } from 'react-native-material-menu'
 import styled from 'styled-components/native'
 
+
+
 // CSS
 const Container = styled.View`
   display: flex;
@@ -84,10 +86,8 @@ export default class Home extends React.Component {
       <Container>
         {/* dark-content Status bar */}
         <StatusBar barStyle="dark-content" backgroundColor="#EBECF4" animated={true} />
-
         <View style={styles.header}>
-          <Text style={styles.headerTitle}>Place</Text>
-
+          <Text style={styles.headerTitle}>Smart Parking</Text>
           <View style={styles.menumore}>
             <Menu
               ref={this.setMenuRef}
@@ -115,8 +115,8 @@ export default class Home extends React.Component {
 
 const styles = StyleSheet.create({
   header: {
-    paddingTop: 35,
-    paddingBottom: 10,
+    paddingTop: 60,
+    paddingBottom: 50,
     backgroundColor: '#FFF',
     alignItems: 'center',
     justifyContent: 'center',
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
   },
   menumore: {
     position: 'absolute',
-    top: 33,
+    top: 60,
     right: 1,
     width: 40,
     height: 35

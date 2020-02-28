@@ -85,7 +85,7 @@ export default class Register extends React.Component {
             <TextInput
               style={styles.input}
               autoCapitalize="none"
-              placeholder="TOYOTA"
+              placeholder="Example : TOYOTA"
               onChangeText={(brand) => this.setState({ brand })}
               value={this.state.brand}
             ></TextInput>
@@ -96,7 +96,7 @@ export default class Register extends React.Component {
             <TextInput
               style={styles.input}
               autoCapitalize="none"
-              placeholder="กข 1234"
+              placeholder="Example : กข 1234"
               onChangeText={(license) => this.setState({ license })}
               value={this.state.license}
             ></TextInput>
@@ -107,7 +107,7 @@ export default class Register extends React.Component {
             <TextInput
               style={styles.input}
               autoCapitalize="none"
-              placeholder="กรุงเทพมหานคร"
+              placeholder="Example : กรุงเทพมหานคร"
               onChangeText={(province) => this.setState({ province })}
               value={this.state.province}
             ></TextInput>
@@ -115,7 +115,7 @@ export default class Register extends React.Component {
         </View>
 
         <TouchableOpacity style={styles.button} onPress={this.handleFinish}>
-          <Text style={{ color: 'white', fontWeight: '500' }}>Finish</Text>
+          <Text style={{ color: 'white', fontWeight: '500' }}>Submit</Text>
         </TouchableOpacity>
 
         {/* <TouchableOpacity
@@ -150,7 +150,8 @@ const styles = StyleSheet.create({
   },
   form: {
     marginVertical: 35,
-    marginHorizontal: 38
+    marginHorizontal: 38,
+    marginTop : 100
   },
   inputTitle: {
     color: 'black',
@@ -165,7 +166,7 @@ const styles = StyleSheet.create({
   },
   button: {
     marginHorizontal: 30,
-    backgroundColor: 'blue',
+    backgroundColor: 'green',
     borderRadius: 4,
     height: 35,
     alignItems: 'center',

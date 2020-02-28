@@ -35,7 +35,7 @@ export default class Login extends React.Component {
     return (
       <View style={styles.container}>
         {/* dark-content Status bar */}
-        <StatusBar barStyle="dark-content" backgroundColor="#EBECF4" animated={true} />
+        <StatusBar barStyle="dark-content"  backgroundColor="#EBECF4" animated={true} />
 
         <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={keyboardVerticalOffset}>
           <View style={styles.LogoContainer}>
@@ -73,11 +73,12 @@ export default class Login extends React.Component {
         </View>
 
         <TouchableOpacity style={styles.button} onPress={this.handleLogin}>
-          <Text style={{ fontSize: 16, color: 'white', fontWeight: '500' }}>Log In</Text>
+          <Text style={{ fontSize: 18, color: 'white', fontWeight: '500' }}>Login</Text>
         </TouchableOpacity>
+        
 
         <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
-          <Text style={{ fontSize: 16, marginVertical: '10%' }}>Not a member? </Text>
+          <Text style={{ fontSize: 16, marginVertical: '10%' }}>Don't have an account? </Text>
           <TouchableOpacity
             style={{ marginVertical: '10%' }}
             onPress={() => this.props.navigation.navigate('Register')}
@@ -103,7 +104,7 @@ const styles = StyleSheet.create({
   },
 
   LogoContainer: {
-    marginTop: '15%',
+    marginTop: '25%',
     paddingVertical: 20,
     alignItems: 'center'
   },
@@ -134,7 +135,7 @@ const styles = StyleSheet.create({
     marginHorizontal: '35%',
     backgroundColor: 'green',
     borderRadius: 4,
-    width: '50%',
+    width: '80%',
     height: 40,
     alignItems: 'center',
     justifyContent: 'center',

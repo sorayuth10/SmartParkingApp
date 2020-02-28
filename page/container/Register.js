@@ -42,10 +42,11 @@ export default class Register extends React.Component {
           <TextInput
             style={styles.input}
             autoCapitalize="words"
-            placeholder="Full Name"
+            placeholder="Name"
             onChangeText={(fullname) => this.setState({ fullname })}
             value={this.state.fullname}
           ></TextInput>
+           <Ionicons name="ios-contact" style={styles.Icon} size={25} />
 
           <View style={{ marginTop: 30 }}>
             <TextInput
@@ -56,6 +57,8 @@ export default class Register extends React.Component {
               onChangeText={(email) => this.setState({ email })}
               value={this.state.email}
             ></TextInput>
+             <Ionicons name="ios-mail" style={styles.Icon} size={25} />
+
           </View>
 
           <View style={{ marginTop: 30 }}>
@@ -67,6 +70,7 @@ export default class Register extends React.Component {
               onChangeText={(password) => this.setState({ password })}
               value={this.state.password}
             ></TextInput>
+             <Ionicons name="ios-lock" style={styles.Icon} size={25} />
           </View>
 
           <View style={{ marginTop: 30 }}>
@@ -74,20 +78,15 @@ export default class Register extends React.Component {
               style={styles.input}
               secureTextEntry
               autoCapitalize="none"
-              placeholder="Re-type password"
+              placeholder="Confirm Password"
               onChangeText={(repassword) => this.setState({ repassword })}
               value={this.state.repassword}
             ></TextInput>
+             <Ionicons name="ios-lock" style={styles.Icon} size={25} />
           </View>
 
           <View style={{ flexDirection: 'row', marginTop: 30 }}>
-            <CheckBox
-              value={this.state.checked}
-              onValueChange={() => this.setState({ checked: !this.state.checked })}
-            />
-            <Text style={{ marginTop: 5, fontSize: 16, marginHorizontal: 10 }}>
-              I accept the Term & Conditions and I acknowledge Privacy Policy
-            </Text>
+            
           </View>
         </View>
 
@@ -96,7 +95,7 @@ export default class Register extends React.Component {
         </View>
 
         <TouchableOpacity style={styles.button} onPress={this.handleRegister}>
-          <Text style={{ color: 'white', fontWeight: '500', fontSize: 16 }}>Register</Text>
+          <Text style={{ color: 'white', fontWeight: '500', fontSize: 16 }}>Create Account</Text>
         </TouchableOpacity>
 
         <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
@@ -132,17 +131,22 @@ const styles = StyleSheet.create({
   input: {
     borderBottomColor: 'black',
     borderBottomWidth: StyleSheet.hairlineWidth,
-    height: 20,
-    fontSize: 16
+    height: 26,
+    fontSize: 16,
+    paddingLeft: 28,
   },
   button: {
     marginTop: 20,
-    marginHorizontal: 60,
-    backgroundColor: 'blue',
+    marginHorizontal: 35,
+    backgroundColor: '#0142C0',
     borderRadius: 4,
     height: 40,
+    width: 290,
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  Icon: {
+    position: 'absolute',
   },
   back: {
     position: 'absolute',
