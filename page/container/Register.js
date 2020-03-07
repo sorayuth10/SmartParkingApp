@@ -37,8 +37,9 @@ export default class Register extends React.Component {
         <TouchableOpacity style={styles.back} onPress={() => this.props.navigation.goBack()}>
           <Ionicons name="ios-arrow-round-back" size={32} color="#FFF" />
         </TouchableOpacity>
-
+        
         <View style={styles.form}>
+          
           <TextInput
             style={styles.input}
             autoCapitalize="words"

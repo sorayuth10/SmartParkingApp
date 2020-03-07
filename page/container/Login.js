@@ -35,6 +35,8 @@ export default class Login extends React.Component {
     return (
       <View style={styles.container}>
         {/* dark-content Status bar */}
+        <Image style= { styles.backgroundImage } source={require('../../image/background.png')}/>
+     
         <StatusBar barStyle="dark-content"  backgroundColor="#EBECF4" animated={true} />
 
         <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={keyboardVerticalOffset}>
@@ -78,7 +80,7 @@ export default class Login extends React.Component {
         
 
         <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
-          <Text style={{ fontSize: 16, marginVertical: '10%' }}>Don't have an account? </Text>
+          <Text style={{ fontSize: 16, marginVertical: '10%', color: 'white' }}>Don't have an account? </Text>
           <TouchableOpacity
             style={{ marginVertical: '10%' }}
             onPress={() => this.props.navigation.navigate('Register')}
@@ -100,8 +102,20 @@ export default class Login extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: '#ED9703'
   },
+
+  backgroundImage:{
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    height: 800,
+    width : 600,
+    opacity: 0.3
+},
 
   LogoContainer: {
     marginTop: '25%',
