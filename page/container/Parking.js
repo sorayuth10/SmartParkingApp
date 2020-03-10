@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, StatusBar, Image, Dimensions } from 'react-native'
 import * as firebase from 'firebase'
 import { Ionicons } from '@expo/vector-icons'
-import {Dialog, DialogTitle, DialogFooter, DialogButton } from 'react-native-popup-dialog'
+import {Dialog,DialogContent, DialogTitle, DialogFooter, DialogButton } from 'react-native-popup-dialog'
 
 export const Parking = (props) => {
   const { navigation } = props
 
   const [defaultNamePlace, setNamePlace] = useState({ namePlace: "default" })
 
-  const [PopUpDialog, setPopUpDialog] = useState({ visible: false })
+  const [dialogVisible, setDialogVisible] = useState(false)
 
   useEffect(() => {
     const fetching = async () => {
@@ -45,7 +45,7 @@ export const Parking = (props) => {
       <View style={styles.form}>
         <TouchableOpacity
           onPress={() => {
-            setPopUpDialog({ visible: true })
+            setDialogVisible(true)
           }}
         >
           <View style={styles.item}>
@@ -58,10 +58,10 @@ export const Parking = (props) => {
         </TouchableOpacity>
         <Dialog
           width={0.7}
-          visible={PopUpDialog.visible}
+          visible={dialogVisible}
           rounded
           onTouchOutside={() => {
-            setPopUpDialog({ visible: false })
+            setDialogVisible(false)
           }}
           dialogTitle={
             <DialogTitle
@@ -85,7 +85,7 @@ export const Parking = (props) => {
                 }}
                 bordered
                 onPress={() => {
-                  setPopUpDialog({ visible: false })
+                  setDialogVisible(false)
                 }}
                 key="button-1"
               />
@@ -93,15 +93,16 @@ export const Parking = (props) => {
                 text="CANCEL"
                 bordered
                 onPress={() => {
-                  setPopUpDialog({ visible: false })
+                  setDialogVisible(false)
                 }}
                 key="button-2"
               />
             </DialogFooter>
           }
-        ></Dialog>
+        ><DialogContent>
+      </DialogContent></Dialog>
 
-        <TouchableOpacity onPress={() => handleBooking()}>
+        <TouchableOpacity onPress={handleBooking}>
           <View style={styles.item}>
             <Text style={{ alignSelf: 'center' }}>002</Text>
             <Image
@@ -111,7 +112,7 @@ export const Parking = (props) => {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => handleBooking()}>
+        <TouchableOpacity onPress={handleBooking}>
           <View style={styles.item}>
             <Text style={{ alignSelf: 'center' }}>003</Text>
             <Image
@@ -121,7 +122,7 @@ export const Parking = (props) => {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => handleBooking()}>
+        <TouchableOpacity onPress={handleBooking}>
           <View style={styles.item}>
             <Text style={{ alignSelf: 'center' }}>004</Text>
             <Image
@@ -131,7 +132,7 @@ export const Parking = (props) => {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => handleBooking()}>
+        <TouchableOpacity onPress={handleBooking}>
           <View style={styles.item}>
             <Text style={{ alignSelf: 'center' }}>005</Text>
             <Image
@@ -143,7 +144,7 @@ export const Parking = (props) => {
       </View>
 
       <View style={styles.form}>
-        <TouchableOpacity onPress={() => handleBooking()}>
+        <TouchableOpacity onPress={handleBooking}>
           <View style={styles.item}>
             <Image
               style={{
@@ -157,7 +158,7 @@ export const Parking = (props) => {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => handleBooking()}>
+        <TouchableOpacity onPress={handleBooking}>
           <View style={styles.item}>
             <Image
               style={{
@@ -171,7 +172,7 @@ export const Parking = (props) => {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => handleBooking()}>
+        <TouchableOpacity onPress={handleBooking}>
           <View style={styles.item}>
             <Image
               style={{
@@ -185,7 +186,7 @@ export const Parking = (props) => {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => handleBooking()}>
+        <TouchableOpacity onPress={handleBooking}>
           <View style={styles.item}>
             <Image
               style={{
@@ -199,7 +200,7 @@ export const Parking = (props) => {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => handleBooking()}>
+        <TouchableOpacity onPress={handleBooking}>
           <View style={styles.item}>
             <Image
               style={{
