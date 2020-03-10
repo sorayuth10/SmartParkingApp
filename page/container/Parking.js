@@ -56,51 +56,53 @@ export const Parking = (props) => {
             />
           </View>
         </TouchableOpacity>
-        <Dialog
-          width={0.7}
-          visible={dialogVisible}
-          rounded
-          onTouchOutside={() => {
+        <Dialog width={0.7}
+         rounded
+    visible={dialogVisible}
+    dialogTitle={
+      <DialogTitle
+        title="Booking Park 001"
+        style={{
+          backgroundColor: 'white',
+          alignSelf: 'center',
+          alignItems: 'center'
+        }}
+        hasTitleBar={false}
+        align="left"
+      />
+    }
+    footer={
+      <DialogFooter>
+        <DialogButton
+          text="OK"
+          style={{
+            backgroundColor: 'white',
+            alignSelf: 'center'
+          }}
+          bordered
+          onPress={() => {
             setDialogVisible(false)
           }}
-          dialogTitle={
-            <DialogTitle
-              title="Booking Park 001"
-              style={{
-                backgroundColor: 'white',
-                alignSelf: 'center',
-                alignItems: 'center'
-              }}
-              hasTitleBar={false}
-              align="left"
-            />
-          }
-          footer={
-            <DialogFooter>
-              <DialogButton
-                text="OK"
-                style={{
-                  backgroundColor: 'white',
-                  alignSelf: 'center'
-                }}
-                bordered
-                onPress={() => {
-                  setDialogVisible(false)
-                }}
-                key="button-1"
-              />
-              <DialogButton
-                text="CANCEL"
-                bordered
-                onPress={() => {
-                  setDialogVisible(false)
-                }}
-                key="button-2"
-              />
-            </DialogFooter>
-          }
-        ><DialogContent>
-      </DialogContent></Dialog>
+          key="button-1"
+        />
+        <DialogButton
+          text="CANCEL"
+          bordered
+          onPress={() => {
+            setDialogVisible(false)
+          }}
+          key="button-2"
+        />
+      </DialogFooter>
+    }
+    onTouchOutside={() => {
+      setDialogVisible(false)
+    }}
+  >
+    <DialogContent>
+    <View/>
+    </DialogContent>
+  </Dialog>
 
         <TouchableOpacity onPress={handleBooking}>
           <View style={styles.item}>
