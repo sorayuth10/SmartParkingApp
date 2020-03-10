@@ -35,9 +35,8 @@ export default class Login extends React.Component {
     return (
       <View style={styles.container}>
         {/* dark-content Status bar */}
-        <Image style= { styles.backgroundImage } source={require('../../image/background.png')}/>
-     
         <StatusBar barStyle="dark-content"  backgroundColor="#EBECF4" animated={true} />
+        <Image style= { styles.backgroundImage } source={require('../../image/background.png')}/>
 
         <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={keyboardVerticalOffset}>
           <View style={styles.LogoContainer}>
@@ -114,7 +113,7 @@ const styles = StyleSheet.create({
     right: 0,
     height: 800,
     width : 600,
-    opacity: 0.3
+    opacity: 1
 },
 
   LogoContainer: {

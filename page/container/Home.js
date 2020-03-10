@@ -1,10 +1,9 @@
 import React from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, StatusBar, Image, ScrollView, Dimensions } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, StatusBar, Image, ScrollView, Dimensions, } from 'react-native'
 import * as firebase from 'firebase'
 import { Ionicons } from '@expo/vector-icons'
 import Menu, { MenuItem, MenuDivider } from 'react-native-material-menu'
 import styled from 'styled-components/native'
-
 
 
 // CSS
@@ -86,13 +85,34 @@ export default class Home extends React.Component {
       <Container>
         {/* dark-content Status bar */}
         <StatusBar barStyle="dark-content" backgroundColor="#EBECF4" animated={true} />
-        <View style={styles.header}>
-          <Text style={styles.headerTitle}>Smart Parking</Text>
+          <View style={styles.header}>
+          <Image
+              style={{ width: Dimensions.get('window').width / 4, height: Dimensions.get('window').height / 8, alignSelf: 'flex-start', marginLeft: 10}}
+              source={require('../../image/logo.png')}
+            />
+            
+        
+            <View style={styles.item}>
+            <Image
+              style={{
+                width: Dimensions.get('window').width / 5,
+                height: Dimensions.get('window').height / 10,
+                alignSelf: 'flex-end', 
+                marginRight: 40,
+                marginTop:10
+                
+              }}
+              source={require('../../image/account.png')}
+            />
+            <Text style={{ alignSelf: 'center', marginRight: 35}}>Prayut Janocha</Text>
+          </View>
+            
+            
           <View style={styles.menumore}>
             <Menu
               ref={this.setMenuRef}
               button={
-                <Text style={{ paddingLeft: 20 }} onPress={this.showMenu}>
+                <Text style={{ paddingLeft: 19, marginTop: 52 }} onPress={this.showMenu}>
                   <Ionicons name="md-more" size={32} />
                 </Text>
               }
@@ -115,18 +135,21 @@ export default class Home extends React.Component {
 
 const styles = StyleSheet.create({
   header: {
-    paddingTop: 60,
-    paddingBottom: 50,
-    backgroundColor: '#FFF',
-    alignItems: 'center',
+    paddingTop: 35,
+    paddingBottom: 15,
+    backgroundColor: '#ED9703',
     justifyContent: 'center',
-    borderBottomWidth: 1,
+    borderBottomWidth: 40,
     borderBottomColor: '#EBECF4',
     shadowColor: '#454D65',
     shadowOffset: { height: 5 },
     shadowRadius: 15,
     shadowOpacity: 0.2,
-    zIndex: 10
+    zIndex: 10,
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+   
+    
   },
   headerTitle: {
     fontSize: 20,
