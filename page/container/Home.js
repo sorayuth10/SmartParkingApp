@@ -91,7 +91,7 @@ export default class Home extends React.Component {
                 width: Dimensions.get('window').width / 5,
                 height: Dimensions.get('window').height / 10.1, 
                 alignItems: 'flex-start', 
-                marginLeft: 10,
+                marginLeft: 20,
                 marginTop:40
 
               }}
@@ -108,6 +108,8 @@ export default class Home extends React.Component {
               }}
               source={require('../../image/account.png')}
             />
+           
+          
             
             
             
@@ -129,9 +131,13 @@ export default class Home extends React.Component {
               <MenuDivider />
               <MenuItem onPress={this.signOutUser}>Log out</MenuItem>
             </Menu> */}
+           
           </View>
         </View>
-
+          <View style={styles.text}>
+            <Text style={{ alignSelf: 'center', fontWeight: 'bold', fontSize: 20, marginBottom: 20}}>PLACE</Text>
+          </View>
+        
         <ScrollView>
           <List>{this.placeList()}</List>
         </ScrollView>
@@ -145,7 +151,6 @@ const styles = StyleSheet.create({
     paddingTop: 35,
     paddingBottom: 15,
     backgroundColor: '#ED9703',
-    justifyContent: 'center',
     // borderBottomWidth: 15,
     // borderBottomColor: '#A9A9A9',
     // shadowOffset: { height: 5,width: 100 },
@@ -163,12 +168,13 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '500'
   },
+  
   menumore: {
     position: 'absolute',
-    top: 60,
-    right: 1,
+    top: 100,
+    right: 10,
     width: 40,
-    height: 35
+    height: 35,
     // backgroundColor: 'rgba(21, 22, 48, 0.1)',
   }
 })
