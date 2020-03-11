@@ -86,30 +86,37 @@ export default class Home extends React.Component {
         {/* dark-content Status bar */}
         <StatusBar barStyle="dark-content" backgroundColor="#EBECF4" animated={true} />
           <View style={styles.header}>
-          <Image
-              style={{ width: Dimensions.get('window').width / 4, height: Dimensions.get('window').height / 8, alignSelf: 'flex-start', marginLeft: 10}}
+            <Image
+              style={{ 
+                width: Dimensions.get('window').width / 5,
+                height: Dimensions.get('window').height / 10.1, 
+                alignItems: 'flex-start', 
+                marginLeft: 10,
+                marginTop:40
+
+              }}
               source={require('../../image/logo.png')}
             />
             
-        
-            <View style={styles.item}>
             <Image
               style={{
                 width: Dimensions.get('window').width / 5,
                 height: Dimensions.get('window').height / 10,
-                alignSelf: 'flex-end', 
-                marginRight: 40,
-                marginTop:10
-                
+                marginRight: 25,
+                marginTop:40
+               
               }}
               source={require('../../image/account.png')}
             />
-            <Text style={{ alignSelf: 'center', marginRight: 35}}>Prayut Janocha</Text>
-          </View>
             
+            
+            
+         
+            
+         
             
           <View style={styles.menumore}>
-            <Menu
+            {/* <Menu
               ref={this.setMenuRef}
               button={
                 <Text style={{ paddingLeft: 19, marginTop: 52 }} onPress={this.showMenu}>
@@ -121,7 +128,7 @@ export default class Home extends React.Component {
               <MenuItem onPress={this.handleAbouUs}>About Us</MenuItem>
               <MenuDivider />
               <MenuItem onPress={this.signOutUser}>Log out</MenuItem>
-            </Menu>
+            </Menu> */}
           </View>
         </View>
 
@@ -139,17 +146,18 @@ const styles = StyleSheet.create({
     paddingBottom: 15,
     backgroundColor: '#ED9703',
     justifyContent: 'center',
-    borderBottomWidth: 40,
-    borderBottomColor: '#EBECF4',
-    shadowColor: '#454D65',
-    shadowOffset: { height: 5 },
-    shadowRadius: 15,
-    shadowOpacity: 0.2,
-    zIndex: 10,
+    // borderBottomWidth: 15,
+    // borderBottomColor: '#A9A9A9',
+    // shadowOffset: { height: 5,width: 100 },
+    // shadowRadius: 15,
+    // shadowOpacity: 0.2,
     justifyContent: 'space-between',
     flexDirection: 'row',
-   
+    borderRadius: 80,
+    height: 175,
+    bottom:30
     
+     
   },
   headerTitle: {
     fontSize: 20,
