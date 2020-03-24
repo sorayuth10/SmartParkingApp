@@ -84,7 +84,7 @@ export default class Home extends React.Component {
     firebase.auth().signOut()
   }
 
-  placeList() {
+  _placeList() {
     return this.state.arrangePlace.map(({ img, name }, index) => (
       <React.Fragment key={index}>
         <TouchableOpacity onPress={() => this.props.navigation.navigate('Parking', { namePlace: { name } })}>
@@ -146,7 +146,7 @@ export default class Home extends React.Component {
         </View>
 
         <ScrollView style={{ marginTop: -50 }}>
-          <List>{this.placeList()}</List>
+          <List>{this._placeList()}</List>
         </ScrollView>
         {this._renderFirstAddData()}
       </Container>
