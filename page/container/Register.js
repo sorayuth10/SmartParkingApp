@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   form: {
-    marginTop: 250,
+    marginTop: 200,
     marginHorizontal: 40
   },
   input: {
