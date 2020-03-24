@@ -12,6 +12,7 @@ import {
   LayoutAnimation
 } from 'react-native'
 import * as firebase from 'firebase'
+import * as Facebook from 'expo-facebook'
 
 export default class Login extends React.Component {
   state = {
@@ -27,6 +28,37 @@ export default class Login extends React.Component {
       .signInWithEmailAndPassword(email, password)
       .catch((error) => this.setState({ errorMessage: error.message }))
   }
+  handleLoginFB = async () => {
+    try {
+      await Facebook.initializeAsync('639314790199535');
+      const {
+        type,
+        token,
+        expires,
+        permissions,
+        declinedPermissions,
+      } = await Facebook.logInWithReadPermissionsAsync({
+        permissions: ['public_profile'],
+      });
+      if (type === 'success') {
+        // Get the user's name using Facebook's Graph API
+        // const response = await fetch(`https://graph.facebook.com/me?access_token=${token}`)
+        // Alert.alert('Logged in!', `Hi ${(await response.json()).name}!`)
+        const credential = firebase.auth.FacebookAuthProvider.credential(token)
+        firebase
+          .auth()
+          .signInWithCredential(credential)
+          .catch((error) => {
+            console.log(error)
+          })
+      } else {
+        // type === 'cancel'
+      }
+    } catch ({ message }) {
+      console.log(`Facebook Login Error: ${message}`)
+      // alert(`Facebook Login Error: ${message}`)
+    }
+  }
 
   render() {
     const keyboardVerticalOffset = Platform.OS === 'ios' ? 40 : 10
@@ -35,8 +67,9 @@ export default class Login extends React.Component {
     return (
       <View style={styles.container}>
         {/* dark-content Status bar */}
-        <StatusBar barStyle="dark-content"  backgroundColor="#EBECF4" animated={true} />
-        <Image style= { styles.backgroundImage } source={require('../../image/background.png')}/>
+        <StatusBar barStyle="dark-content" backgroundColor="#EBECF4" animated={true} />
+
+        <Image style={styles.backgroundImage} source={require('../../image/background.png')} />
 
         <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={keyboardVerticalOffset}>
           <View style={styles.LogoContainer}>
@@ -73,10 +106,13 @@ export default class Login extends React.Component {
           <Text style={styles.error}>{this.state.errorMessage}</Text>
         </View>
 
-        <TouchableOpacity style={styles.button} onPress={this.handleLogin}>
+        <TouchableOpacity style={styles.buttonLogin} onPress={this.handleLogin}>
           <Text style={{ fontSize: 18, color: 'white', fontWeight: '500' }}>Login</Text>
         </TouchableOpacity>
-        
+        <View style={{ marginTop: '2%' }} />
+        <TouchableOpacity style={styles.buttonLoginFB} onPress={this.handleLoginFB}>
+          <Text style={{ fontSize: 18, color: 'white', fontWeight: '500' }}>Login with Facebook</Text>
+        </TouchableOpacity>
 
         <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
           <Text style={{ fontSize: 16, marginVertical: '10%', color: 'white' }}>Don't have an account? </Text>
@@ -105,26 +141,26 @@ const styles = StyleSheet.create({
     backgroundColor: '#ED9703'
   },
 
-  backgroundImage:{
+  backgroundImage: {
     position: 'absolute',
     top: 0,
     left: 0,
     bottom: 0,
     right: 0,
     height: 800,
-    width : 600,
+    width: 600,
     opacity: 1
-},
+  },
 
   LogoContainer: {
-    marginTop: '25%',
+    marginTop: '10%',
     paddingVertical: 20,
     alignItems: 'center'
   },
   errorMessage: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginVertical: '5%'
+    marginVertical: '4%'
   },
   error: {
     color: 'red',
@@ -144,11 +180,21 @@ const styles = StyleSheet.create({
     fontSize: 18,
     height: 40
   },
-  button: {
+  buttonLogin: {
     marginHorizontal: '35%',
     backgroundColor: 'green',
     borderRadius: 4,
-    width: '80%',
+    width: '70%',
+    height: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'center'
+  },
+  buttonLoginFB: {
+    marginHorizontal: '35%',
+    backgroundColor: 'blue',
+    borderRadius: 4,
+    width: '70%',
     height: 40,
     alignItems: 'center',
     justifyContent: 'center',
