@@ -37,9 +37,8 @@ export default class Register extends React.Component {
         <TouchableOpacity style={styles.back} onPress={() => this.props.navigation.goBack()}>
           <Ionicons name="ios-arrow-round-back" size={32} color="#FFF" />
         </TouchableOpacity>
-        
+
         <View style={styles.form}>
-          
           <TextInput
             style={styles.input}
             autoCapitalize="words"
@@ -47,7 +46,7 @@ export default class Register extends React.Component {
             onChangeText={(fullname) => this.setState({ fullname })}
             value={this.state.fullname}
           ></TextInput>
-           <Ionicons name="ios-contact" style={styles.Icon} size={25} />
+          <Ionicons name="ios-contact" style={styles.Icon} size={25} />
 
           <View style={{ marginTop: 30 }}>
             <TextInput
@@ -58,8 +57,7 @@ export default class Register extends React.Component {
               onChangeText={(email) => this.setState({ email })}
               value={this.state.email}
             ></TextInput>
-             <Ionicons name="ios-mail" style={styles.Icon} size={25} />
-
+            <Ionicons name="ios-mail" style={styles.Icon} size={25} />
           </View>
 
           <View style={{ marginTop: 30 }}>
@@ -71,7 +69,7 @@ export default class Register extends React.Component {
               onChangeText={(password) => this.setState({ password })}
               value={this.state.password}
             ></TextInput>
-             <Ionicons name="ios-lock" style={styles.Icon} size={25} />
+            <Ionicons name="ios-lock" style={styles.Icon} size={25} />
           </View>
 
           <View style={{ marginTop: 30 }}>
@@ -83,12 +81,10 @@ export default class Register extends React.Component {
               onChangeText={(repassword) => this.setState({ repassword })}
               value={this.state.repassword}
             ></TextInput>
-             <Ionicons name="ios-lock" style={styles.Icon} size={25} />
+            <Ionicons name="ios-lock" style={styles.Icon} size={25} />
           </View>
 
-          <View style={{ flexDirection: 'row', marginTop: 30 }}>
-            
-          </View>
+          <View style={{ flexDirection: 'row', marginTop: 30 }}></View>
         </View>
 
         <View style={styles.errorMessage}>
@@ -134,7 +130,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth,
     height: 26,
     fontSize: 16,
-    paddingLeft: 28,
+    paddingLeft: 28
   },
   button: {
     marginTop: 20,
@@ -147,7 +143,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   Icon: {
-    position: 'absolute',
+    position: 'absolute'
   },
   back: {
     position: 'absolute',

@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
   form: {
     marginVertical: 35,
     marginHorizontal: 38,
-    marginTop : 100
+    marginTop: 100
   },
   inputTitle: {
     color: 'black',
