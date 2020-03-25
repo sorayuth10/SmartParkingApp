@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, CheckBox, StatusBar } from 'react-native'
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, StatusBar, KeyboardAvoidingView } from 'react-native'
 import * as firebase from 'firebase'
 import { Ionicons } from '@expo/vector-icons'
 
@@ -38,54 +38,54 @@ export default class Register extends React.Component {
           <Ionicons name="ios-arrow-round-back" size={32} color="#FFF" />
         </TouchableOpacity>
 
-        <View style={styles.form}>
-          <TextInput
-            style={styles.input}
-            autoCapitalize="words"
-            placeholder="Name"
-            onChangeText={(fullname) => this.setState({ fullname })}
-            value={this.state.fullname}
-          ></TextInput>
-          <Ionicons name="ios-contact" style={styles.Icon} size={25} />
-
-          <View style={{ marginTop: 30 }}>
+        <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={Platform.OS === 'ios' ? 40 : 10}>
+          <View style={styles.form}>
             <TextInput
               style={styles.input}
-              autoCapitalize="none"
-              placeholder="Email Address"
-              keyboardType="email-address"
-              onChangeText={(email) => this.setState({ email })}
-              value={this.state.email}
+              autoCapitalize="words"
+              placeholder="Name"
+              onChangeText={(fullname) => this.setState({ fullname })}
+              value={this.state.fullname}
             ></TextInput>
-            <Ionicons name="ios-mail" style={styles.Icon} size={25} />
-          </View>
+            <Ionicons name="ios-contact" style={styles.Icon} size={25} />
 
-          <View style={{ marginTop: 30 }}>
-            <TextInput
-              style={styles.input}
-              secureTextEntry
-              autoCapitalize="none"
-              placeholder="Password"
-              onChangeText={(password) => this.setState({ password })}
-              value={this.state.password}
-            ></TextInput>
-            <Ionicons name="ios-lock" style={styles.Icon} size={25} />
-          </View>
+            <View style={{ marginTop: 30 }}>
+              <TextInput
+                style={styles.input}
+                autoCapitalize="none"
+                placeholder="Email Address"
+                keyboardType="email-address"
+                onChangeText={(email) => this.setState({ email })}
+                value={this.state.email}
+              ></TextInput>
+              <Ionicons name="ios-mail" style={styles.Icon} size={25} />
+            </View>
 
-          <View style={{ marginTop: 30 }}>
-            <TextInput
-              style={styles.input}
-              secureTextEntry
-              autoCapitalize="none"
-              placeholder="Confirm Password"
-              onChangeText={(repassword) => this.setState({ repassword })}
-              value={this.state.repassword}
-            ></TextInput>
-            <Ionicons name="ios-lock" style={styles.Icon} size={25} />
-          </View>
+            <View style={{ marginTop: 30 }}>
+              <TextInput
+                style={styles.input}
+                secureTextEntry
+                autoCapitalize="none"
+                placeholder="Password"
+                onChangeText={(password) => this.setState({ password })}
+                value={this.state.password}
+              ></TextInput>
+              <Ionicons name="ios-lock" style={styles.Icon} size={25} />
+            </View>
 
-          <View style={{ flexDirection: 'row', marginTop: 30 }}></View>
-        </View>
+            <View style={{ marginTop: 30 }}>
+              <TextInput
+                style={styles.input}
+                secureTextEntry
+                autoCapitalize="none"
+                placeholder="Confirm Password"
+                onChangeText={(repassword) => this.setState({ repassword })}
+                value={this.state.repassword}
+              ></TextInput>
+              <Ionicons name="ios-lock" style={styles.Icon} size={25} />
+            </View>
+          </View>
+        </KeyboardAvoidingView>
 
         <View style={styles.errorMessage}>
           {this.state.errorMessage && <Text style={styles.error}>{this.state.errorMessage}</Text>}
