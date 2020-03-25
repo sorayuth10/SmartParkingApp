@@ -37,7 +37,7 @@ export default class Login extends React.Component {
       if (type === 'success') {
         // Get the user's name using Facebook's Graph API
         // const response = await fetch(`https://graph.facebook.com/me?access_token=${token}`)
-        // Alert.alert('Logged in!', `Hi ${(await response.json()).name}!`)
+        // console.log(`${await response.json()}`)
         const credential = firebase.auth.FacebookAuthProvider.credential(token)
         firebase
           .auth()
@@ -55,7 +55,6 @@ export default class Login extends React.Component {
   }
 
   render() {
-    const keyboardVerticalOffset = Platform.OS === 'ios' ? 40 : 10
     LayoutAnimation.easeInEaseOut() //Animation
 
     return (
@@ -65,7 +64,7 @@ export default class Login extends React.Component {
 
         <Image style={styles.backgroundImage} source={require('../../image/background.png')} />
 
-        <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={keyboardVerticalOffset}>
+        <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={Platform.OS === 'ios' ? 40 : 10}>
           <View style={styles.LogoContainer}>
             <Image style={{ width: 150, height: 160, alignItems: 'center' }} source={require('../../image/logo.png')} />
           </View>
