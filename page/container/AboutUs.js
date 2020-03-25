@@ -30,13 +30,17 @@ export default class AboutUs extends React.Component {
 
           <View style={styles.form}>
             <Image style={{ width: 170, height: 160, alignItems: 'center' }} source={require('../../image/Por.jpg')} />
-            <Text style={{ color: 'black', textAlign: 'center', fontWeight: 'bold' }}>NITHI SEMANUANG</Text>
-            <Text style={{ color: 'black', textAlign: 'center', fontWeight: 'bold' }}></Text>
-            <Image style={{ width: 170, height: 160, alignItems: 'center' }} source={require('../../image/Nine.jpg')} />
-            <Text style={{ color: 'black', textAlign: 'center', fontWeight: 'bold' }}>PAPON PROMMOOL</Text>
-            <Text style={{ color: 'black', textAlign: 'center', fontWeight: 'bold' }}></Text>
-            <Image style={{ width: 170, height: 160, alignItems: 'center' }} source={require('../../image/O.jpg')} />
-            <Text style={{ color: 'black', textAlign: 'center', fontWeight: 'bold' }}>SORAYUTH CHAROENSRISAN</Text>
+            <Text style={{ fontSize: 18, textAlign: 'center', fontWeight: 'bold' }}>NITHI SEMANUANG</Text>
+            <Text style={{ fontSize: 14, textAlign: 'center' }}>Hardware Developer</Text>
+
+            <Image style={{ width: 170, height: 160, alignItems: 'center', marginTop: 20 }} source={require('../../image/Nine.jpg')} />
+            <Text style={{ fontSize: 18, textAlign: 'center', fontWeight: 'bold' }}>PAPON PROMMOOL</Text>
+            <Text style={{ fontSize: 14, textAlign: 'center' }}>Administration / Document Controller</Text>
+
+            <Image style={{ width: 170, height: 160, alignItems: 'center', marginTop: 20 }} source={require('../../image/O.jpg')} />
+            <Text style={{ fontSize: 18, textAlign: 'center', fontWeight: 'bold' }}>SORAYUTH CHAROENSRISAN</Text>
+            <Text style={{ fontSize: 14, textAlign: 'center', marginBottom: 20 }}>Software Developer</Text>
+
           </View>
         </ScrollView>
       </View>
