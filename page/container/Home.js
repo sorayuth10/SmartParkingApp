@@ -2,8 +2,8 @@ import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, StatusBar, Image, ScrollView, Dimensions } from 'react-native'
 import * as firebase from 'firebase'
 import { Ionicons } from '@expo/vector-icons'
-import Menu, { MenuItem, MenuDivider } from 'react-native-material-menu'
 import styled from 'styled-components/native'
+import { NavigationActions, StackActions } from 'react-navigation'
 
 // CSS
 const Container = styled.View`
@@ -14,32 +14,30 @@ const List = styled.View`
   flex-wrap: wrap;
   justify-content: space-between;
 `
+const resetAction = StackActions.reset({
+  index: 0,
+  actions: [NavigationActions.navigate({ routeName: 'NewProfile' })]
+})
 
+const urlDefault = '../../image/account.png'
 export default class Home extends React.Component {
-  //Menu Options
-  _menu = null
-  setMenuRef = (ref) => {
-    this._menu = ref
-  }
-  showMenu = () => {
-    this._menu.show()
-  }
-
   state = {
     arrangePlace: [],
-    showFirstAddData: true
+    urlDefault: ''
   }
 
   componentDidMount() {
+    console.log(firebase.auth().currentUser.photoURL)
+    if (firebase.auth().currentUser.photoURL) {
+      this.setState({ urlDefault: firebase.auth().currentUser.photoURL })
+    }
     firebase
       .database()
       .ref('UserAuth/' + firebase.auth().currentUser.uid)
       .once('value', (snap) => {
         if (!snap.exists()) {
-          this.props.navigation.navigate('NewProfile')
+          this.props.navigation.dispatch(resetAction)
         } else {
-          // this.props.navigation.navigate('Home')
-          this.toggleFirstAddData()
           let arrangePlace = []
           firebase
             .database()
@@ -55,29 +53,11 @@ export default class Home extends React.Component {
       })
   }
 
-  toggleFirstAddData = () => {
-    this.setState({
-      showFirstAddData: false
-    })
-  }
-
-  _renderFirstAddData() {
-    if (this.state.showFirstAddData) {
-      return (
-        <TouchableOpacity onPress={() => this.props.navigation.navigate('NewProfile')}>
-          <Text>Add car data</Text>
-        </TouchableOpacity>
-      )
-    }
-  }
-
   handleProfile = () => {
-    this._menu.hide()
     this.props.navigation.navigate('Profile')
   }
 
   handleAbouUs = () => {
-    this._menu.hide()
     this.props.navigation.navigate('AboutUs')
   }
   signOutUser = () => {
@@ -111,44 +91,24 @@ export default class Home extends React.Component {
               width: '28%',
               height: '75%',
               alignItems: 'flex-start',
-              marginLeft: 20,
+              marginLeft: 10,
               marginTop: 40
             }}
             source={require('../../image/logo.png')}
           />
-          <Text style={styles.headerTitle}>PLACE</Text>
-          <Image
-            style={{
-              width: '20%',
-              height: '50%',
-              marginRight: 25,
-              marginTop: 70,
-              borderRadius: 50
-            }}
-            source={require('../../image/account.png')}
-          />
-
-          <View style={styles.menumore}>
-            <Menu
-              ref={this.setMenuRef}
-              button={
-                <Text style={{ paddingLeft: 19, marginTop: 52 }} onPress={this.showMenu}>
-                  <Ionicons name="md-more" size={32} />
-                </Text>
-              }
-            >
-              <MenuItem onPress={this.handleProfile}>Profile</MenuItem>
-              <MenuItem onPress={this.handleAbouUs}>About Us</MenuItem>
-              <MenuDivider />
-              <MenuItem onPress={this.signOutUser}>Log out</MenuItem>
-            </Menu>
-          </View>
+          <Text style={styles.headerTitle}>PLACES</Text>
+          <TouchableOpacity onPress={this.handleProfile}>
+            <Image
+              style={{ marginTop: 70, marginRight: 15, width: 70, height: 70, borderRadius: 50 }}
+              source={require(urlDefault)}
+            />
+            {/* {uri: firebase.auth().currentUser.photoURL} */}
+          </TouchableOpacity>
         </View>
 
         <ScrollView style={{ marginTop: -50 }}>
           <List>{this._placeList()}</List>
         </ScrollView>
-        {this._renderFirstAddData()}
       </Container>
     )
   }
@@ -170,7 +130,8 @@ const styles = StyleSheet.create({
     top: 50,
     alignSelf: 'center',
     fontWeight: '900',
-    fontSize: 20
+    fontSize: 25,
+    marginRight: 15
   },
   menumore: {
     position: 'absolute',
