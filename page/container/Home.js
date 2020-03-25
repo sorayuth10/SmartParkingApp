@@ -1,7 +1,6 @@
 import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, StatusBar, Image, ScrollView, Dimensions } from 'react-native'
 import * as firebase from 'firebase'
-import { Ionicons } from '@expo/vector-icons'
 import styled from 'styled-components/native'
 import { NavigationActions, StackActions } from 'react-navigation'
 
