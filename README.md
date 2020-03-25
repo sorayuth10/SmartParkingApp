@@ -1,4 +1,5 @@
 # SmartParkingApp
 Smart Parking Application
 
-์ npm i ใหม่ด้วย !!!
+ลบโฟลเดอร์ node_module แล้ว
+npm i ใหม่ด้วย !!!
