@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
   },
   buttonLogin: {
     marginHorizontal: '35%',
-    backgroundColor: 'green',
+    backgroundColor: '#093540',
     borderRadius: 4,
     width: '70%',
     height: 40,
@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
   },
   buttonLoginFB: {
     marginHorizontal: '35%',
-    backgroundColor: 'blue',
+    backgroundColor: '#2B78E0',
     borderRadius: 4,
     width: '70%',
     height: 40,
