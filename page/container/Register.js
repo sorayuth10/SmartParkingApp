@@ -33,12 +33,12 @@ export default class Register extends React.Component {
         {/* dark-content Status bar */}
         <StatusBar barStyle="dark-content" backgroundColor="#EBECF4" animated={true} />
 
-        {/* Back button */}
-        <TouchableOpacity style={styles.back} onPress={() => this.props.navigation.goBack()}>
-          <Ionicons name="ios-arrow-round-back" size={32} color="#FFF" />
-        </TouchableOpacity>
-
         <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={Platform.OS === 'ios' ? 40 : 10}>
+          {/* Back button */}
+          <TouchableOpacity style={styles.back} onPress={() => this.props.navigation.goBack()}>
+            <Ionicons name="ios-arrow-round-back" size={32} color="#FFF" />
+          </TouchableOpacity>
+
           <View style={styles.form}>
             <TextInput
               style={styles.input}
@@ -134,12 +134,12 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: 20,
-    marginHorizontal: 35,
     backgroundColor: '#0142C0',
     borderRadius: 4,
     height: 40,
-    width: 290,
+    width: '80%',
     alignItems: 'center',
+    alignSelf: 'center',
     justifyContent: 'center'
   },
   Icon: {
