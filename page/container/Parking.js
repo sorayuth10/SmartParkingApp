@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, StatusBar, Image, Dimensions } from 'react-native'
 import * as firebase from 'firebase'
 import { Ionicons } from '@expo/vector-icons'
-import {Dialog,DialogContent, DialogTitle, DialogFooter, DialogButton } from 'react-native-popup-dialog'
+import { Dialog, DialogContent, DialogTitle, DialogFooter, DialogButton } from 'react-native-popup-dialog'
 
 export const Parking = (props) => {
   const { navigation } = props
 
-  const [defaultNamePlace, setNamePlace] = useState({ namePlace: "default" })
+  const [defaultNamePlace, setNamePlace] = useState({ namePlace: 'default' })
 
   const [dialogVisible, setDialogVisible] = useState(false)
 
@@ -15,7 +15,7 @@ export const Parking = (props) => {
     const fetching = async () => {
       try {
         const paramsNamePlace = navigation.getParam('namePlace', '')
-        setNamePlace({ namePlace : paramsNamePlace })
+        setNamePlace({ namePlace: paramsNamePlace })
       } catch (e) {
         console.log(e)
       }
@@ -56,53 +56,54 @@ export const Parking = (props) => {
             />
           </View>
         </TouchableOpacity>
-        <Dialog width={0.7}
-         rounded
-    visible={dialogVisible}
-    dialogTitle={
-      <DialogTitle
-        title="Booking Park 001"
-        style={{
-          backgroundColor: 'white',
-          alignSelf: 'center',
-          alignItems: 'center'
-        }}
-        hasTitleBar={false}
-        align="left"
-      />
-    }
-    footer={
-      <DialogFooter>
-        <DialogButton
-          text="OK"
-          style={{
-            backgroundColor: 'white',
-            alignSelf: 'center'
-          }}
-          bordered
-          onPress={() => {
+        <Dialog
+          width={0.7}
+          rounded
+          visible={dialogVisible}
+          dialogTitle={
+            <DialogTitle
+              title="Booking Park 001"
+              style={{
+                backgroundColor: 'white',
+                alignSelf: 'center',
+                alignItems: 'center'
+              }}
+              hasTitleBar={false}
+              align="left"
+            />
+          }
+          footer={
+            <DialogFooter>
+              <DialogButton
+                text="OK"
+                style={{
+                  backgroundColor: 'white',
+                  alignSelf: 'center'
+                }}
+                bordered
+                onPress={() => {
+                  setDialogVisible(false)
+                }}
+                key="button-1"
+              />
+              <DialogButton
+                text="CANCEL"
+                bordered
+                onPress={() => {
+                  setDialogVisible(false)
+                }}
+                key="button-2"
+              />
+            </DialogFooter>
+          }
+          onTouchOutside={() => {
             setDialogVisible(false)
           }}
-          key="button-1"
-        />
-        <DialogButton
-          text="CANCEL"
-          bordered
-          onPress={() => {
-            setDialogVisible(false)
-          }}
-          key="button-2"
-        />
-      </DialogFooter>
-    }
-    onTouchOutside={() => {
-      setDialogVisible(false)
-    }}
-  >
-    <DialogContent>
-    <View/>
-    </DialogContent>
-  </Dialog>
+        >
+          <DialogContent>
+            <View />
+          </DialogContent>
+        </Dialog>
 
         <TouchableOpacity onPress={handleBooking}>
           <View style={styles.item}>
