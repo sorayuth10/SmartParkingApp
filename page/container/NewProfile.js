@@ -1,8 +1,19 @@
 import React from 'react'
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, StatusBar, KeyboardAvoidingView } from 'react-native'
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+  StatusBar,
+  KeyboardAvoidingView,
+  Keyboard,
+  TouchableWithoutFeedback
+} from 'react-native'
 import * as firebase from 'firebase'
 import { Ionicons } from '@expo/vector-icons'
 import { NavigationActions, StackActions } from 'react-navigation'
+
 const resetAction = StackActions.reset({
   index: 0,
   actions: [NavigationActions.navigate({ routeName: 'Home' })]
@@ -18,16 +29,12 @@ export default class Register extends React.Component {
   }
 
   handleFinish = () => {
-
-    if (this.state.brand == ''.trim())
-      return this.setState({ errorBrand: 'Fill data in this form.' })
-      else this.setState({ errorBrand: null })
-    if (this.state.license == ''.trim())
-      return this.setState({ errorLicense: 'Fill data in this form.' })
-      else this.setState({ errorLicense: null })
-    if (this.state.province == ''.trim())
-      return this.setState({ errorProvince: 'Fill data in this form.' })
-      else this.setState({ errorProvince: null })
+    if (this.state.brand == ''.trim()) return this.setState({ errorBrand: 'Fill data in this form.' })
+    else this.setState({ errorBrand: null })
+    if (this.state.license == ''.trim()) return this.setState({ errorLicense: 'Fill data in this form.' })
+    else this.setState({ errorLicense: null })
+    if (this.state.province == ''.trim()) return this.setState({ errorProvince: 'Fill data in this form.' })
+    else this.setState({ errorProvince: null })
     const { displayName } = firebase.auth().currentUser
     this.setState({ displayName })
 
@@ -65,20 +72,21 @@ export default class Register extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        {/* dark-content Status bar */}
-        <StatusBar barStyle="dark-content" backgroundColor="#EBECF4" animated={true} />
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+        <View style={styles.container}>
+          {/* dark-content Status bar */}
+          <StatusBar barStyle="dark-content" backgroundColor="#EBECF4" animated={true} />
 
-        <View style={styles.form}>
-          <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={Platform.OS === 'ios' ? 40 : 10}>
-            {/* add profile img */}
-            <TouchableOpacity style={styles.profile}>
-              <Ionicons name="ios-add" size={40} color="#FFF" style={{ marginTop: 6, marginLeft: 2 }}></Ionicons>
-            </TouchableOpacity>
+          <View style={styles.form}>
+            <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={Platform.OS === 'ios' ? 40 : 10}>
+              {/* add profile img */}
+              <TouchableOpacity style={styles.profile}>
+                <Ionicons name="ios-add" size={40} color="#FFF" style={{ marginTop: 6, marginLeft: 2 }} />
+              </TouchableOpacity>
 
-            <Text>{this.state.displayName}</Text>
+              <Text>{this.state.displayName}</Text>
 
-            {/* <Text style={styles.inputTitle}> Full Name </Text>
+              {/* <Text style={styles.inputTitle}> Full Name </Text>
           <TextInput
             style={styles.input}
             autoCapitalize="words"
@@ -86,54 +94,71 @@ export default class Register extends React.Component {
             value={this.state.fullname}
           ></TextInput> */}
 
-            <View style={{ marginTop: 30 }}>
-              <Text style={styles.inputTitle}> Brand </Text>
-              <TextInput
-                style={styles.input}
-                autoCapitalize="none"
-                placeholder="Example : TOYOTA"
-                onChangeText={(brand) => this.setState({ brand })}
-                value={this.state.brand}
-              ></TextInput>
-              <View style={styles.errorMessage}>
-                {this.state.errorBrand && <Text style={styles.error}>{this.state.errorBrand}</Text>}
+              <View style={{ marginTop: 30 }}>
+                <Text style={styles.inputTitle}> Brand </Text>
+                <TextInput
+                  style={styles.input}
+                  autoCapitalize="none"
+                  placeholder="Example : TOYOTA"
+                  onChangeText={(brand) => this.setState({ brand })}
+                  value={this.state.brand}
+                  returnKeyType={'next'}
+                  onSubmitEditing={() => {
+                    this.secondTextInput.focus()
+                  }}
+                  blurOnSubmit={false}
+                ></TextInput>
+                <View style={styles.errorMessage}>
+                  {this.state.errorBrand && <Text style={styles.error}>{this.state.errorBrand}</Text>}
+                </View>
               </View>
-            </View>
 
-            <View style={{ marginTop: 10 }}>
-              <Text style={styles.inputTitle}> License Plate </Text>
-              <TextInput
-                style={styles.input}
-                autoCapitalize="none"
-                placeholder="Example : กข 1234"
-                onChangeText={(license) => this.setState({ license })}
-                value={this.state.license}
-              ></TextInput>
-              <View style={styles.errorMessage}>
-                {this.state.errorLicense && <Text style={styles.error}>{this.state.errorLicense}</Text>}
+              <View style={{ marginTop: 10 }}>
+                <Text style={styles.inputTitle}> License Plate </Text>
+                <TextInput
+                  style={styles.input}
+                  autoCapitalize="none"
+                  placeholder="Example : กข 1234"
+                  onChangeText={(license) => this.setState({ license })}
+                  value={this.state.license}
+                  ref={(input) => {
+                    this.secondTextInput = input
+                  }}
+                  returnKeyType={'next'}
+                  onSubmitEditing={() => {
+                    this.thirdTextInput.focus()
+                  }}
+                  blurOnSubmit={false}
+                ></TextInput>
+                <View style={styles.errorMessage}>
+                  {this.state.errorLicense && <Text style={styles.error}>{this.state.errorLicense}</Text>}
+                </View>
               </View>
-            </View>
 
-            <View style={{ marginTop: 10 }}>
-              <Text style={styles.inputTitle}> Province </Text>
-              <TextInput
-                style={styles.input}
-                autoCapitalize="none"
-                placeholder="Example : กรุงเทพมหานคร"
-                onChangeText={(province) => this.setState({ province })}
-                value={this.state.province}
-              ></TextInput>
-              <View style={styles.errorMessage}>
-                {this.state.errorProvince && <Text style={styles.error}>{this.state.errorProvince}</Text>}
+              <View style={{ marginTop: 10 }}>
+                <Text style={styles.inputTitle}> Province </Text>
+                <TextInput
+                  style={styles.input}
+                  autoCapitalize="none"
+                  placeholder="Example : กรุงเทพมหานคร"
+                  onChangeText={(province) => this.setState({ province })}
+                  value={this.state.province}
+                  ref={(input) => {
+                    this.thirdTextInput = input
+                  }}
+                ></TextInput>
+                <View style={styles.errorMessage}>
+                  {this.state.errorProvince && <Text style={styles.error}>{this.state.errorProvince}</Text>}
+                </View>
               </View>
-            </View>
 
-            <TouchableOpacity style={styles.button} onPress={this.handleFinish}>
-              <Text style={{ color: 'white', fontWeight: '500' }}>Submit</Text>
-            </TouchableOpacity>
-          </KeyboardAvoidingView>
+              <TouchableOpacity style={styles.button} onPress={this.handleFinish}>
+                <Text style={{ color: 'white', fontWeight: '500' }}>Submit</Text>
+              </TouchableOpacity>
+            </KeyboardAvoidingView>
+          </View>
         </View>
-      </View>
+      </TouchableWithoutFeedback>
     )
   }
 }

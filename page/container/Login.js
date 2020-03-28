@@ -9,7 +9,9 @@ import {
   Image,
   KeyboardAvoidingView,
   StatusBar,
-  LayoutAnimation
+  LayoutAnimation,
+  Keyboard,
+  TouchableWithoutFeedback
 } from 'react-native'
 import * as firebase from 'firebase'
 import * as Facebook from 'expo-facebook'
@@ -58,69 +60,82 @@ export default class Login extends React.Component {
     LayoutAnimation.easeInEaseOut() //Animation
 
     return (
-      <View style={styles.container}>
-        {/* dark-content Status bar */}
-        <StatusBar barStyle="dark-content" backgroundColor="#EBECF4" animated={true} />
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+        <View style={styles.container}>
+          {/* dark-content Status bar */}
+          <StatusBar barStyle="dark-content" backgroundColor="#EBECF4" animated={true} />
 
-        <Image style={styles.backgroundImage} source={require('../../image/background.png')} />
+          <Image style={styles.backgroundImage} source={require('../../image/background.png')} />
 
-        <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={Platform.OS === 'ios' ? 40 : 10}>
-          <View style={styles.LogoContainer}>
-            <Image style={{ width: 150, height: 160, alignItems: 'center' }} source={require('../../image/logo.png')} />
-          </View>
+          <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={Platform.OS === 'ios' ? 40 : 10}>
+            <View style={styles.LogoContainer}>
+              <Image
+                style={{ width: 150, height: 160, alignItems: 'center' }}
+                source={require('../../image/logo.png')}
+              />
+            </View>
 
-          <View style={styles.form}>
-            <TextInput
-              style={styles.input}
-              autoCapitalize="none"
-              placeholder="Email"
-              autoCorrect={false}
-              keyboardType="email-address"
-              onChangeText={(email) => this.setState({ email })}
-              value={this.state.email}
-            ></TextInput>
-            <Ionicons name="ios-contact" style={styles.Icon} size={25} />
-
-            <View style={{ marginTop: 32 }}>
+            <View style={styles.form}>
               <TextInput
                 style={styles.input}
-                secureTextEntry
-                placeholder="Password"
                 autoCapitalize="none"
-                onChangeText={(password) => this.setState({ password })}
-                value={this.state.password}
+                placeholder="Email"
+                autoCorrect={false}
+                keyboardType="email-address"
+                onChangeText={(email) => this.setState({ email })}
+                value={this.state.email}
+                returnKeyType={'next'}
+                onSubmitEditing={() => {
+                  this.secondTextInput.focus()
+                }}
+                blurOnSubmit={false}
               ></TextInput>
-              <Ionicons name="ios-lock" style={styles.Icon} size={25} />
+              <Ionicons name="ios-contact" style={styles.Icon} size={25} />
+
+              <View style={{ marginTop: 32 }}>
+                <TextInput
+                  style={styles.input}
+                  secureTextEntry
+                  placeholder="Password"
+                  autoCapitalize="none"
+                  onChangeText={(password) => this.setState({ password })}
+                  value={this.state.password}
+                  ref={(input) => {
+                    this.secondTextInput = input
+                  }}
+                ></TextInput>
+                <Ionicons name="ios-lock" style={styles.Icon} size={25} />
+              </View>
             </View>
+          </KeyboardAvoidingView>
+
+          <View style={styles.errorMessage}>
+            <Text style={styles.error}>{this.state.errorMessage}</Text>
           </View>
-        </KeyboardAvoidingView>
 
-        <View style={styles.errorMessage}>
-          <Text style={styles.error}>{this.state.errorMessage}</Text>
-        </View>
-
-        <TouchableOpacity style={styles.buttonLogin} onPress={this.handleLogin}>
-          <Text style={{ fontSize: 18, color: 'white', fontWeight: '500' }}>Login</Text>
-        </TouchableOpacity>
-        <View style={{ marginTop: '2%' }} />
-        <TouchableOpacity style={styles.buttonLoginFB} onPress={this.handleLoginFB}>
-          <Text style={{ fontSize: 18, color: 'white', fontWeight: '500' }}>Login with Facebook</Text>
-        </TouchableOpacity>
-
-        <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
-          <Text style={{ fontSize: 16, marginVertical: '10%', color: 'white' }}>Don't have an account? </Text>
-          <TouchableOpacity
-            style={{ marginVertical: '10%' }}
-            onPress={() => this.props.navigation.navigate('Register')}
-          >
-            <Text style={{ fontSize: 16, fontWeight: '500', color: '#0074E1' }}>Register now</Text>
+          <TouchableOpacity style={styles.buttonLogin} onPress={this.handleLogin}>
+            <Text style={{ fontSize: 18, color: 'white', fontWeight: '500' }}>Login</Text>
           </TouchableOpacity>
-        </View>
+          <View style={{ marginTop: '2%' }} />
+          <TouchableOpacity style={styles.buttonLoginFB} onPress={this.handleLoginFB}>
+            <Text style={{ fontSize: 18, color: 'white', fontWeight: '500' }}>Login with Facebook</Text>
+          </TouchableOpacity>
 
-        <Text style={{ fontSize: 12, color: 'gray', alignSelf: 'center', position: 'absolute', bottom: 0 }}>
-          Smart Parking Project © 2020
-        </Text>
-      </View>
+          <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
+            <Text style={{ fontSize: 16, marginVertical: '10%', color: 'white' }}>Don't have an account? </Text>
+            <TouchableOpacity
+              style={{ marginVertical: '10%' }}
+              onPress={() => this.props.navigation.navigate('Register')}
+            >
+              <Text style={{ fontSize: 16, fontWeight: '500', color: '#0074E1' }}>Register now</Text>
+            </TouchableOpacity>
+          </View>
+
+          <Text style={{ fontSize: 12, color: 'gray', alignSelf: 'center', position: 'absolute', bottom: 0 }}>
+            Smart Parking Project © 2020
+          </Text>
+        </View>
+      </TouchableWithoutFeedback>
     )
   }
   // _submit = () => {
