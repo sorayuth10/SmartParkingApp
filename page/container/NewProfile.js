@@ -57,6 +57,9 @@ export default class Register extends React.Component {
     }, 500)
     this.props.navigation.dispatch(resetAction)
   }
+  signOutUser = () => {
+    firebase.auth().signOut()
+  }
 
   // RegisterData =() =>{
   //     firebase
@@ -157,6 +160,9 @@ export default class Register extends React.Component {
               </TouchableOpacity>
             </KeyboardAvoidingView>
           </View>
+
+          <TouchableOpacity style={{ alignSelf: 'center' }}onPress={this.signOutUser}><Text>Log out</Text></TouchableOpacity>
+
         </View>
       </TouchableWithoutFeedback>
     )
