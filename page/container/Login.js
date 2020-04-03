@@ -65,13 +65,13 @@ export default class Login extends React.Component {
           {/* dark-content Status bar */}
           <StatusBar barStyle="dark-content" backgroundColor="#EBECF4" animated={true} />
 
-          <Image style={styles.backgroundImage} source={require('../../image/background.png')} />
+          <Image style={styles.backgroundImage} source={require('../../assets/background.png')} />
 
           <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={Platform.OS === 'ios' ? 40 : 10}>
             <View style={styles.LogoContainer}>
               <Image
                 style={{ width: 150, height: 160, alignItems: 'center' }}
-                source={require('../../image/logo.png')}
+                source={require('../../assets/logo.png')}
               />
             </View>
 
@@ -232,7 +232,7 @@ const styles = StyleSheet.create({
 //                 <View style={styles.LogoContainer}>
 //                 <Image
 //                         style={{ width: 150, height: 160, alignItems: 'center'}}
-//                         source={require('../../image/Icon.png')}
+//                         source={require('../../assets/Icon.png')}
 
 //                 />
 //                 </View>

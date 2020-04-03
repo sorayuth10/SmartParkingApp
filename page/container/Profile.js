@@ -112,17 +112,17 @@ export const Profile = (props) => {
 
       <View style={styles.profile}>
         <View styles={styles.profileImage}>
-          <Image source={require('../../image/account.png')} style={styles.image} resizeMode="center"></Image>
+          <Image source={require('../../assets/account.png')} style={styles.image} resizeMode="center"></Image>
         </View>
         <Text style={{ fontSize: 35 }}>Profile Name</Text>
       </View>
       {/* <Text style={{textAlign:'center'}}>My car</Text> */}
       <View style={styles.img}>
-        <Image source={require('../../image/car.png')} style={styles.carIcon} resizeMode="center"></Image>
+        <Image source={require('../../assets/car.png')} style={styles.carIcon} resizeMode="center"></Image>
         <Text style={{ marginTop: 15, fontSize: 18, marginRight: '2%' }}>Toyota</Text>
       </View>
       <View style={styles.img}>
-        <Image source={require('../../image/license.png')} style={styles.carIcon} resizeMode="center"></Image>
+        <Image source={require('../../assets/license.png')} style={styles.carIcon} resizeMode="center"></Image>
         <Text style={{ marginTop: 15, fontSize: 18, marginRight: '2%' }}>กข 1111</Text>
       </View>
 

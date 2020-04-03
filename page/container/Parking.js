@@ -70,7 +70,7 @@ export const Parking = (props) => {
             <Text style={{ alignSelf: 'center' }}>001</Text>
             <Image
               style={{ width: Dimensions.get('window').width / 5, height: Dimensions.get('window').height / 5.2 }}
-              source={require('../../image/Green.png')}
+              source={require('../../assets/Green.png')}
             />
           </View>
         </TouchableOpacity>
@@ -80,7 +80,7 @@ export const Parking = (props) => {
             <Text style={{ alignSelf: 'center' }}>002</Text>
             <Image
               style={{ width: Dimensions.get('window').width / 5, height: Dimensions.get('window').height / 5.2 }}
-              source={require('../../image/Green.png')}
+              source={require('../../assets/Green.png')}
             />
           </View>
         </TouchableOpacity>
@@ -90,7 +90,7 @@ export const Parking = (props) => {
             <Text style={{ alignSelf: 'center' }}>003</Text>
             <Image
               style={{ width: Dimensions.get('window').width / 5, height: Dimensions.get('window').height / 5.2 }}
-              source={require('../../image/Green.png')}
+              source={require('../../assets/Green.png')}
             />
           </View>
         </TouchableOpacity>
@@ -100,7 +100,7 @@ export const Parking = (props) => {
             <Text style={{ alignSelf: 'center' }}>004</Text>
             <Image
               style={{ width: Dimensions.get('window').width / 5, height: Dimensions.get('window').height / 5.2 }}
-              source={require('../../image/Green.png')}
+              source={require('../../assets/Green.png')}
             />
           </View>
         </TouchableOpacity>
@@ -110,7 +110,7 @@ export const Parking = (props) => {
             <Text style={{ alignSelf: 'center' }}>005</Text>
             <Image
               style={{ width: Dimensions.get('window').width / 5, height: Dimensions.get('window').height / 5.2 }}
-              source={require('../../image/Green.png')}
+              source={require('../../assets/Green.png')}
             />
           </View>
         </TouchableOpacity>
@@ -127,7 +127,7 @@ export const Parking = (props) => {
                 height: Dimensions.get('window').height / 5.2,
                 transform: [{ rotate: '180deg' }]
               }}
-              source={require('../../image/Green.png')}
+              source={require('../../assets/Green.png')}
             />
             <Text style={{ alignSelf: 'center' }}>006</Text>
           </View>
@@ -141,7 +141,7 @@ export const Parking = (props) => {
                 height: Dimensions.get('window').height / 5.2,
                 transform: [{ rotate: '180deg' }]
               }}
-              source={require('../../image/Green.png')}
+              source={require('../../assets/Green.png')}
             />
             <Text style={{ alignSelf: 'center' }}>007</Text>
           </View>
@@ -155,7 +155,7 @@ export const Parking = (props) => {
                 height: Dimensions.get('window').height / 5.2,
                 transform: [{ rotate: '180deg' }]
               }}
-              source={require('../../image/Green.png')}
+              source={require('../../assets/Green.png')}
             />
             <Text style={{ alignSelf: 'center' }}>008</Text>
           </View>
@@ -169,7 +169,7 @@ export const Parking = (props) => {
                 height: Dimensions.get('window').height / 5.2,
                 transform: [{ rotate: '180deg' }]
               }}
-              source={require('../../image/Green.png')}
+              source={require('../../assets/Green.png')}
             />
             <Text style={{ alignSelf: 'center' }}>009</Text>
           </View>
@@ -183,7 +183,7 @@ export const Parking = (props) => {
                 height: Dimensions.get('window').height / 5.2,
                 transform: [{ rotate: '180deg' }]
               }}
-              source={require('../../image/Green.png')}
+              source={require('../../assets/Green.png')}
             />
             <Text style={{ alignSelf: 'center' }}>010</Text>
           </View>
@@ -344,13 +344,13 @@ const styles = StyleSheet.create({
 
 //     <Image
 //             style={{ width: 105, height: 200}}
-//             source={require('../../image/Green.png')} />
+//             source={require('../../assets/Green.png')} />
 //     <Image
 //             style={{ width: 105, height: 200}}
-//             source={require('../../image/Green.png')} />
+//             source={require('../../assets/Green.png')} />
 //     <Image
 //             style={{ width: 105, height: 200}}
-//             source={require('../../image/Green.png')} />
+//             source={require('../../assets/Green.png')} />
 //     </View>
 //     </View>
 

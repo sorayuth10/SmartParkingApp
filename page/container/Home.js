@@ -18,7 +18,7 @@ const resetAction = StackActions.reset({
   actions: [NavigationActions.navigate({ routeName: 'NewProfile' })]
 })
 
-const urlDefault = '../../image/account.png'
+const urlDefault = '../../assets/account.png'
 export default class Home extends React.Component {
   state = {
     arrangePlace: [],
@@ -93,7 +93,7 @@ export default class Home extends React.Component {
               marginLeft: 10,
               marginTop: 40
             }}
-            source={require('../../image/logo.png')}
+            source={require('../../assets/logo.png')}
           />
           <Text style={styles.headerTitle}>PLACES</Text>
           <TouchableOpacity onPress={this.handleProfile}>

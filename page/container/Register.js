@@ -210,7 +210,7 @@ const styles = StyleSheet.create({
 //     <View style={styles.LogoContainer}>
 //     <Image
 //             style={{ width: 150, height: 160, alignItems: 'center'}}
-//             source={require('../../image/Icon.png')}
+//             source={require('../../assets/Icon.png')}
 
 //     />
 //     </View>

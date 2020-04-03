@@ -25,19 +25,19 @@ export default class AboutUs extends React.Component {
 
         <ScrollView>
           <View style={styles.LogoContainer}>
-            <Image style={{ width: 350, height: 180, alignItems: 'center' }} source={require('../../image/km.jpg')} />
+            <Image style={{ width: 350, height: 180, alignItems: 'center' }} source={require('../../assets/km.jpg')} />
           </View>
 
           <View style={styles.form}>
-            <Image style={{ width: 170, height: 160, alignItems: 'center' }} source={require('../../image/Por.jpg')} />
+            <Image style={{ width: 170, height: 160, alignItems: 'center' }} source={require('../../assets/Por.jpg')} />
             <Text style={{ fontSize: 18, textAlign: 'center', fontWeight: 'bold' }}>NITHI SEMANUANG</Text>
             <Text style={{ fontSize: 14, textAlign: 'center' }}>Hardware Developer</Text>
 
-            <Image style={{ width: 170, height: 160, alignItems: 'center', marginTop: 20 }} source={require('../../image/Nine.jpg')} />
+            <Image style={{ width: 170, height: 160, alignItems: 'center', marginTop: 20 }} source={require('../../assets/Nine.jpg')} />
             <Text style={{ fontSize: 18, textAlign: 'center', fontWeight: 'bold' }}>PAPON PROMMOOL</Text>
             <Text style={{ fontSize: 14, textAlign: 'center' }}>Administration / Document Controller</Text>
 
-            <Image style={{ width: 170, height: 160, alignItems: 'center', marginTop: 20 }} source={require('../../image/O.jpg')} />
+            <Image style={{ width: 170, height: 160, alignItems: 'center', marginTop: 20 }} source={require('../../assets/O.jpg')} />
             <Text style={{ fontSize: 18, textAlign: 'center', fontWeight: 'bold' }}>SORAYUTH CHAROENSRISAN</Text>
             <Text style={{ fontSize: 14, textAlign: 'center', marginBottom: 20 }}>Software Developer</Text>
 
