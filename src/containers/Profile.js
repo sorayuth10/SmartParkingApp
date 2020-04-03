@@ -96,6 +96,10 @@ export const Profile = (props) => {
     firebase.auth().signOut()
   }
 
+  const aboutUs = () => {
+    navigation.navigate('AboutUs')
+  }
+
   return (
     <View style={styles.contianer}>
       {/* dark-content Status bar */}
@@ -127,7 +131,7 @@ export const Profile = (props) => {
       </View>
 
       <Button title="Edit Profile" styles={{ marginTop: 50 }} onPress={() => Alert.alert('Edit Profile')} />
-      <View />
+      <Button title="About Us" onPress={aboutUs} />
       <Button title="Log out" onPress={signOutUser} />
     </View>
   )
