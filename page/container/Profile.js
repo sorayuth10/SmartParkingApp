@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, StatusBar, Image, Button, Alert } from 'react-native'
 import * as firebase from 'firebase'
 import { Ionicons } from '@expo/vector-icons'
@@ -118,11 +118,11 @@ export const Profile = (props) => {
       </View>
       {/* <Text style={{textAlign:'center'}}>My car</Text> */}
       <View style={styles.img}>
-        <Image source={require('../../image/c1.png')} style={styles.carIcon} resizeMode="center"></Image>
+        <Image source={require('../../image/car.png')} style={styles.carIcon} resizeMode="center"></Image>
         <Text style={{ marginTop: 15, fontSize: 18, marginRight: '2%' }}>Toyota</Text>
       </View>
       <View style={styles.img}>
-        <Image source={require('../../image/c2.png')} style={styles.carIcon} resizeMode="center"></Image>
+        <Image source={require('../../image/license.png')} style={styles.carIcon} resizeMode="center"></Image>
         <Text style={{ marginTop: 15, fontSize: 18, marginRight: '2%' }}>กข 1111</Text>
       </View>
 
