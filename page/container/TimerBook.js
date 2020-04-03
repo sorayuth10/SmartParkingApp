@@ -3,8 +3,14 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import { Notifications } from 'expo'
 import * as Permissions from 'expo-permissions'
 import * as firebase from 'firebase'
+import { NavigationActions, StackActions } from 'react-navigation'
 
 const INITIAL_TIME = 900000
+
+const resetAction = StackActions.reset({
+  index: 0,
+  actions: [NavigationActions.navigate({ routeName: 'Home' })]
+})
 
 class TimerBook extends React.Component {
   constructor(props) {
@@ -52,10 +58,10 @@ class TimerBook extends React.Component {
       const countdownFn = setInterval(() => this.countdown(expiredDate), 1000)
       this.setState({ countdown: countdownFn })
     } else {
+      this.props.navigation.dispatch(resetAction)
       clearInterval(countdown)
       // Notifications.cancelAllScheduledNotificationsAsync()
       this.setState({ start: false, time: INITIAL_TIME })
-      this.props.navigation.goBack()
     }
   }
 

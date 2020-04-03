@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, StatusBar, Image, Dimensions 
 import * as firebase from 'firebase'
 import { Ionicons } from '@expo/vector-icons'
 import { Dialog, DialogContent, DialogTitle, DialogFooter, DialogButton } from 'react-native-popup-dialog'
+import { NavigationActions, StackActions } from 'react-navigation'
 
 export const Parking = (props) => {
   const { navigation } = props
@@ -27,9 +28,14 @@ export const Parking = (props) => {
     // } ) ( )
   }, [])
 
+  const resetAction = StackActions.reset({
+    index: 0,
+    actions: [NavigationActions.navigate({ routeName: 'TimerBook' })]
+  })
+
   const handleBooking = () => {
     console.log('Booking')
-    navigation.navigate('TimerBook')
+    navigation.dispatch(resetAction)
   }
 
   const handleCar = () => {
