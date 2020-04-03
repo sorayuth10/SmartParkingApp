@@ -9,6 +9,7 @@ import NewProfile from './container/NewProfile'
 import Profile from './container/Profile'
 import Parking from './container/Parking'
 import AboutUs from './container/AboutUs'
+import TimerBook from './container/TimerBook'
 
 import * as firebase from 'firebase'
 import { firebaseConfig } from '../config'
@@ -21,7 +22,8 @@ const AppStack = createStackNavigator(
     NewProfile: NewProfile,
     Profile: Profile,
     Parking: Parking,
-    AboutUs: AboutUs
+    AboutUs: AboutUs,
+    TimerBook: TimerBook
   },
   {
     defaultNavigationOptions: {
