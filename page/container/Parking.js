@@ -6,26 +6,34 @@ import { Dialog, DialogContent, DialogTitle, DialogFooter, DialogButton } from '
 
 export const Parking = (props) => {
   const { navigation } = props
-
   const [defaultNamePlace, setNamePlace] = useState({ namePlace: 'default' })
-
   const [dialogVisible, setDialogVisible] = useState(false)
+  const dialogHead = `Book a ${defaultNamePlace.namePlace.name} park`
 
   useEffect(() => {
     const fetching = async () => {
       try {
-        const paramsNamePlace = navigation.getParam('namePlace', '')
-        setNamePlace({ namePlace: paramsNamePlace })
+        const paramsNamePlace = await navigation.getParam('namePlace', '')
+        await setNamePlace({ namePlace: paramsNamePlace })
       } catch (e) {
         console.log(e)
       }
     }
     fetching()
+    // IIFE
+    // (async function fetching() {
+    //   await navigation.getParam('namePlace', '')
+    //   setNamePlace({ namePlace: navigation.getParam('namePlace', '') })
+    // } ) ( )
   }, [])
 
   const handleBooking = () => {
     console.log('Booking')
-    //จองงง
+    navigation.navigate('TimerBook')
+  }
+
+  const handleCar = () => {
+    console.log('Car')
   }
 
   return (
@@ -42,12 +50,16 @@ export const Parking = (props) => {
         <Text style={styles.headerTitle}>{defaultNamePlace.namePlace.name}</Text>
       </View>
 
+      <View style={styles.Text}>
+        <Text style={styles.Text2}>เหลือที่ว่าง</Text>
+        <Text style={styles.Text1}>10 คัน</Text>
+
+        <Text style={styles.Text3}>จากทั้งหมด</Text>
+        <Text style={styles.Text4}>10 คัน</Text>
+      </View>
+
       <View style={styles.form}>
-        <TouchableOpacity
-          onPress={() => {
-            setDialogVisible(true)
-          }}
-        >
+        <TouchableOpacity onPress={handleCar}>
           <View style={styles.item}>
             <Text style={{ alignSelf: 'center' }}>001</Text>
             <Image
@@ -56,56 +68,8 @@ export const Parking = (props) => {
             />
           </View>
         </TouchableOpacity>
-        <Dialog
-          width={0.7}
-          rounded
-          visible={dialogVisible}
-          dialogTitle={
-            <DialogTitle
-              title="Booking Park 001"
-              style={{
-                backgroundColor: 'white',
-                alignSelf: 'center',
-                alignItems: 'center'
-              }}
-              hasTitleBar={false}
-              align="left"
-            />
-          }
-          footer={
-            <DialogFooter>
-              <DialogButton
-                text="OK"
-                style={{
-                  backgroundColor: 'white',
-                  alignSelf: 'center'
-                }}
-                bordered
-                onPress={() => {
-                  setDialogVisible(false)
-                }}
-                key="button-1"
-              />
-              <DialogButton
-                text="CANCEL"
-                bordered
-                onPress={() => {
-                  setDialogVisible(false)
-                }}
-                key="button-2"
-              />
-            </DialogFooter>
-          }
-          onTouchOutside={() => {
-            setDialogVisible(false)
-          }}
-        >
-          <DialogContent>
-            <View />
-          </DialogContent>
-        </Dialog>
 
-        <TouchableOpacity onPress={handleBooking}>
+        <TouchableOpacity onPress={handleCar}>
           <View style={styles.item}>
             <Text style={{ alignSelf: 'center' }}>002</Text>
             <Image
@@ -115,7 +79,7 @@ export const Parking = (props) => {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={handleBooking}>
+        <TouchableOpacity onPress={handleCar}>
           <View style={styles.item}>
             <Text style={{ alignSelf: 'center' }}>003</Text>
             <Image
@@ -125,7 +89,7 @@ export const Parking = (props) => {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={handleBooking}>
+        <TouchableOpacity onPress={handleCar}>
           <View style={styles.item}>
             <Text style={{ alignSelf: 'center' }}>004</Text>
             <Image
@@ -135,7 +99,7 @@ export const Parking = (props) => {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={handleBooking}>
+        <TouchableOpacity onPress={handleCar}>
           <View style={styles.item}>
             <Text style={{ alignSelf: 'center' }}>005</Text>
             <Image
@@ -146,8 +110,10 @@ export const Parking = (props) => {
         </TouchableOpacity>
       </View>
 
+      <View style={{ marginVertical: '7%' }} />
+
       <View style={styles.form}>
-        <TouchableOpacity onPress={handleBooking}>
+        <TouchableOpacity onPress={handleCar}>
           <View style={styles.item}>
             <Image
               style={{
@@ -161,7 +127,7 @@ export const Parking = (props) => {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={handleBooking}>
+        <TouchableOpacity onPress={handleCar}>
           <View style={styles.item}>
             <Image
               style={{
@@ -175,7 +141,7 @@ export const Parking = (props) => {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={handleBooking}>
+        <TouchableOpacity onPress={handleCar}>
           <View style={styles.item}>
             <Image
               style={{
@@ -189,7 +155,7 @@ export const Parking = (props) => {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={handleBooking}>
+        <TouchableOpacity onPress={handleCar}>
           <View style={styles.item}>
             <Image
               style={{
@@ -203,7 +169,7 @@ export const Parking = (props) => {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={handleBooking}>
+        <TouchableOpacity onPress={handleCar}>
           <View style={styles.item}>
             <Image
               style={{
@@ -217,6 +183,63 @@ export const Parking = (props) => {
           </View>
         </TouchableOpacity>
       </View>
+      <TouchableOpacity
+        style={styles.buttonBook}
+        onPress={() => {
+          setDialogVisible(true)
+        }}
+      >
+        <Text style={{ fontSize: 18, color: 'white', fontWeight: '500' }}>Book a park</Text>
+      </TouchableOpacity>
+      <Dialog
+        width={0.9}
+        rounded
+        visible={dialogVisible}
+        dialogTitle={
+          <DialogTitle
+            title={dialogHead}
+            style={{
+              backgroundColor: 'white',
+              alignSelf: 'center',
+              alignItems: 'center'
+            }}
+            hasTitleBar={false}
+            align="left"
+          />
+        }
+        footer={
+          <DialogFooter>
+            <DialogButton
+              text="Confirm"
+              style={{
+                backgroundColor: 'white',
+                alignSelf: 'center'
+              }}
+              bordered
+              onPress={() => {
+                handleBooking()
+                setDialogVisible(false)
+              }}
+              key="button-1"
+            />
+            <DialogButton
+              text="CANCEL"
+              bordered
+              onPress={() => {
+                setDialogVisible(false)
+              }}
+              key="button-2"
+            />
+          </DialogFooter>
+        }
+        onTouchOutside={() => {
+          setDialogVisible(false)
+        }}
+      >
+        <DialogContent>
+          <Text>You have 15 minutes left to book a park. Are you sure you want to confirm ?</Text>
+        </DialogContent>
+      </Dialog>
     </View>
   )
 }
@@ -259,11 +282,20 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   form: {
-    marginVertical: '10%',
-    marginTop: '25%',
+    marginVertical: '5%',
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between'
+  },
+  buttonBook: {
+    marginHorizontal: '35%',
+    backgroundColor: '#093540',
+    borderRadius: 4,
+    width: '70%',
+    height: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'center'
   }
 })
 
