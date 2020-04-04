@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
     padding: 10
   },
   positonQR: {
-    marginLeft: '65%'
+    marginLeft: '60%'
   }
 })
 
