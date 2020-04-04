@@ -10,6 +10,7 @@ import Profile from './containers/Profile'
 import Parking from './containers/Parking'
 import AboutUs from './containers/AboutUs'
 import TimerBook from './containers/TimerBook'
+import RetryConnected from './containers/RetryConnected'
 
 import * as firebase from 'firebase'
 import { firebaseConfig } from '../config'
@@ -23,7 +24,8 @@ const AppStack = createStackNavigator(
     Profile: Profile,
     Parking: Parking,
     AboutUs: AboutUs,
-    TimerBook: TimerBook
+    TimerBook: TimerBook,
+    RetryConnected: RetryConnected
   },
   {
     defaultNavigationOptions: {

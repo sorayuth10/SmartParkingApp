@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, StatusBar, Image, ScrollView,
 import * as firebase from 'firebase'
 import styled from 'styled-components/native'
 import { NavigationActions, StackActions } from 'react-navigation'
+import * as Network from 'expo-network'
 
 // CSS
 const Container = styled.View`
@@ -13,10 +14,24 @@ const List = styled.View`
   flex-wrap: wrap;
   justify-content: space-between;
 `
-const resetAction = StackActions.reset({
+const resetLinkToNewProfile = StackActions.reset({
   index: 0,
   actions: [NavigationActions.navigate({ routeName: 'NewProfile' })]
 })
+
+const resetNetwork = StackActions.reset({
+  index: 0,
+  actions: [NavigationActions.navigate({ routeName: 'RetryConnected' })]
+})
+
+const checkNetwork = async () => {
+  await Network.getNetworkStateAsync().then((data) => {
+    console.log(data)
+    if (!data.isConnected) {
+      this.props.navigation.dispatch(resetNetwork)
+    }
+  })
+}
 
 const urlDefault = '../../assets/account.png'
 export default class Home extends React.Component {
@@ -27,6 +42,7 @@ export default class Home extends React.Component {
 
   componentDidMount() {
     console.log(firebase.auth().currentUser.photoURL)
+    checkNetwork()
     if (firebase.auth().currentUser.photoURL) {
       this.setState({ urlDefault: firebase.auth().currentUser.photoURL })
     }
@@ -35,7 +51,7 @@ export default class Home extends React.Component {
       .ref('UserAuth/' + firebase.auth().currentUser.uid)
       .once('value', (snap) => {
         if (!snap.exists()) {
-          this.props.navigation.dispatch(resetAction)
+          this.props.navigation.dispatch(resetLinkToNewProfile)
         } else {
           let arrangePlace = []
           firebase
