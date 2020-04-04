@@ -4,6 +4,7 @@ import { Notifications } from 'expo'
 import * as Permissions from 'expo-permissions'
 import * as firebase from 'firebase'
 import { NavigationActions, StackActions } from 'react-navigation'
+import QRCode from 'react-native-qrcode'
 
 const INITIAL_TIME = 900000
 
@@ -11,7 +12,6 @@ const resetAction = StackActions.reset({
   index: 0,
   actions: [NavigationActions.navigate({ routeName: 'Home' })]
 })
-
 class TimerBook extends React.Component {
   constructor(props) {
     super(props)
@@ -128,9 +128,23 @@ class TimerBook extends React.Component {
     const seconds = Math.floor((time % (1000 * 60)) / 1000)
       .toString()
       .padStart(2, '0')
-    
+
     return (
       <View style={styles.container}>
+
+        <View style={styles.positonQR}>
+          <QRCode
+            value={'smartparking'}
+            //Setting the value of QRCode
+            size={400}
+            //Size of QRCode
+            bgColor="#000"
+            //Backgroun Color of QRCode
+            fgColor="#fff"
+            //Front Color of QRCode
+          />
+        </View>
+
         <Text style={styles.timeCountdown}>{`${minutes}:${seconds}`}</Text>
 
         <TouchableOpacity style={styles.button} onPress={this.handleClickStartStop}>
@@ -149,6 +163,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   timeCountdown: {
+    marginTop: -180,
     fontSize: 50,
     fontWeight: 'bold'
   },
@@ -159,6 +174,9 @@ const styles = StyleSheet.create({
   fontButton: {
     fontSize: 40,
     padding: 10
+  },
+  positonQR: {
+    marginLeft: '65%'
   }
 })
 

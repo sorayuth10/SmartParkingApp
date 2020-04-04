@@ -21,8 +21,10 @@
     "react-native": "^0.61.5",
     "react-native-gesture-handler": "^1.5.0",
     "react-native-popup-dialog": "^0.18.3",
+    "react-native-qrcode": "^0.2.7",
     "react-native-safe-area-context": "^0.6.0",
     "react-native-web": "~0.11.7",
+    "react-native-webview": "^7.4.3",
     "react-navigation": "^4.0.10",
     "react-navigation-stack": "^2.0.16",
     "styled-components": "^5.0.1"
