@@ -21,7 +21,7 @@
     "react-native": "^0.61.5",
     "react-native-gesture-handler": "^1.5.0",
     "react-native-popup-dialog": "^0.18.3",
-    "react-native-qrcode": "git+https://github.com/sorayuth10/react-native-qrcode.git",
+    "react-native-qrcode": "https://github.com/sorayuth10/react-native-qrcode.git",
     "react-native-safe-area-context": "^0.6.0",
     "react-native-web": "~0.11.7",
     "react-native-webview": "^7.4.3",
