@@ -200,7 +200,7 @@ const styles = StyleSheet.create({
   },
   buttonLoginFB: {
     marginHorizontal: '35%',
-    backgroundColor: '#2B78E0',
+    backgroundColor: '#3b5998',
     borderRadius: 4,
     width: '70%',
     height: 40,

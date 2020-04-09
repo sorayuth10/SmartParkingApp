@@ -123,16 +123,17 @@ export const Profile = (props) => {
       {/* <Text style={{textAlign:'center'}}>My car</Text> */}
       <View style={styles.img}>
         <Image source={require('../../assets/car.png')} style={styles.carIcon} resizeMode="center"></Image>
-        <Text style={{ marginTop: 15, fontSize: 18, marginRight: '2%' }}>Toyota</Text>
+        <Text style={{ marginTop: 15, fontSize: 18, marginRight: '4%' }}>Toyota</Text>
       </View>
       <View style={styles.img}>
         <Image source={require('../../assets/license.png')} style={styles.carIcon} resizeMode="center"></Image>
-        <Text style={{ marginTop: 15, fontSize: 18, marginRight: '2%' }}>กข 1111</Text>
+        <Text style={{ marginTop: 15, fontSize: 18, marginRight: '1%' }}>กข 1111</Text>
       </View>
-
-      <Button title="Edit Profile" styles={{ marginTop: 50 }} onPress={() => Alert.alert('Edit Profile')} />
-      <Button title="About Us" onPress={aboutUs} />
-      <Button title="Log out" onPress={signOutUser} />
+      <View style={styles.button}>
+      <Button title="Edit Profile" color="#9A9A9A" styles={{ marginTop: 50 }} onPress={() => Alert.alert('Edit Profile')} />
+      <Button title="About Us" color="#9A9A9A" justifyContent= "space-between" onPress={aboutUs} />
+      <Button title="Log out" color="#BE0000"  justifyContent= "space-between" onPress={signOutUser} />
+      </View>
     </View>
   )
 }
@@ -193,5 +194,12 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 20,
     fontWeight: '500'
-  }
+  },
+  button: {
+    flex: 0.5,
+    justifyContent: 'space-between',
+    width: 300,
+    marginLeft: 30,
+    paddingTop: 30
+  },
 })

@@ -57,11 +57,10 @@ export const Parking = (props) => {
       </View>
 
       <View style={styles.Text}>
-        <Text style={styles.Text2}>เหลือที่ว่าง</Text>
-        <Text style={styles.Text1}>10 คัน</Text>
-
-        <Text style={styles.Text3}>จากทั้งหมด</Text>
-        <Text style={styles.Text4}>10 คัน</Text>
+        <Text style={{ fontSize: 15, color: 'black' }}>เหลือที่ว่าง</Text>
+        <Text style={{ fontSize: 20, color: 'red' }}>10</Text>
+        <Text style={{ fontSize: 15, color: 'black' }}>จากทั้งหมด</Text>
+        <Text style={{ fontSize: 20, color: 'black' }}>10</Text>
       </View>
 
       <View style={styles.form}>
@@ -270,6 +269,10 @@ const styles = StyleSheet.create({
     shadowRadius: 15,
     shadowOpacity: 0.2,
     zIndex: 10
+  },
+  Text: {
+    alignItems: 'center',
+    paddingTop: 15
   },
   headerTitle: {
     fontSize: 20,
