@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, StatusBar, Image, Button, Alert } from 'react-native'
 import * as firebase from 'firebase'
 import { Ionicons } from '@expo/vector-icons'
@@ -91,11 +91,34 @@ import { Ionicons } from '@expo/vector-icons'
 
 export const Profile = (props) => {
   const { navigation } = props
-
+  const [user, setUser] = React.useState({
+    displayName: '',
+    License: '',
+    Brand: '',
+    Province: ''
+  })
+  const [photoURL, setphotoURL] = React.useState(require('../../assets/account.png'))
   const signOutUser = () => {
     firebase.auth().signOut()
   }
-
+  useEffect(() => {
+    getUser()
+  }, [])
+  const getUser = () => {
+    setUser((prev) => ({ ...prev, displayName: firebase.auth().currentUser.displayName }))
+    firebase
+      .database()
+      .ref(`UserAuth/${firebase.auth().currentUser.uid}/Cars/001`)
+      .on('value', (data) => {
+        setUser((prev) => ({ ...prev, Brand: data.toJSON().Brand }))
+        setUser((prev) => ({ ...prev, License: data.toJSON().License }))
+        setUser((prev) => ({ ...prev, Province: data.toJSON().Province }))
+      })
+    if (firebase.auth().currentUser.photoURL != null) {
+      console.log(firebase.auth().currentUser.photoURL)
+      setphotoURL({ uri: firebase.auth().currentUser.photoURL })
+    }
+  }
   const aboutUs = () => {
     navigation.navigate('AboutUs')
   }
@@ -116,23 +139,26 @@ export const Profile = (props) => {
 
       <View style={styles.profile}>
         <View styles={styles.profileImage}>
-          <Image source={require('../../assets/account.png')} style={styles.image} resizeMode="center"></Image>
+          <Image source={photoURL} style={styles.image} resizeMode="center"></Image>
         </View>
-        <Text style={{ fontSize: 35 }}>Profile Name</Text>
+        <Text style={{ fontSize: 35 }}>{user.displayName}</Text>
       </View>
       {/* <Text style={{textAlign:'center'}}>My car</Text> */}
       <View style={styles.img}>
         <Image source={require('../../assets/car.png')} style={styles.carIcon} resizeMode="center"></Image>
-        <Text style={{ marginTop: 15, fontSize: 18, marginRight: '4%' }}>Toyota</Text>
+        <Text style={{ marginTop: 15, fontSize: 18, marginRight: '4%' }}>{user.Brand}</Text>
       </View>
       <View style={styles.img}>
         <Image source={require('../../assets/license.png')} style={styles.carIcon} resizeMode="center"></Image>
-        <Text style={{ marginTop: 15, fontSize: 18, marginRight: '1%' }}>กข 1111</Text>
+        <Text style={{ marginTop: 15, fontSize: 18, marginRight: '1%' }}>{user.License}</Text>
+      </View>
+      <View style={styles.img}>
+        <Text style={{ marginTop: 15, fontSize: 18, marginRight: '1%' }}>{user.Province}</Text>
       </View>
       <View style={styles.button}>
-      <Button title="Edit Profile" color="#9A9A9A" styles={{ marginTop: 50 }} onPress={() => Alert.alert('Edit Profile')} />
-      <Button title="About Us" color="#9A9A9A" justifyContent= "space-between" onPress={aboutUs} />
-      <Button title="Log out" color="#BE0000"  justifyContent= "space-between" onPress={signOutUser} />
+        <Button title="Edit Profile" color="#9A9A9A" styles={{ marginTop: 50 }} onPress={getUser} />
+        <Button title="About Us" color="#9A9A9A" justifyContent="space-between" onPress={aboutUs} />
+        <Button title="Log out" color="#BE0000" justifyContent="space-between" onPress={signOutUser} />
       </View>
     </View>
   )
@@ -201,5 +227,5 @@ const styles = StyleSheet.create({
     width: 300,
     marginLeft: 30,
     paddingTop: 30
-  },
+  }
 })
