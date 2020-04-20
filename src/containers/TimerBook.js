@@ -5,6 +5,7 @@ import * as Permissions from 'expo-permissions'
 import * as firebase from 'firebase'
 import { NavigationActions, StackActions } from 'react-navigation'
 import QRCode from 'react-native-qrcode'
+import { Dialog, DialogContent, DialogTitle, DialogFooter, DialogButton } from 'react-native-popup-dialog'
 
 const INITIAL_TIME = 900000
 
@@ -18,7 +19,8 @@ class TimerBook extends React.Component {
     this.state = {
       time: INITIAL_TIME,
       start: false,
-      notification: {}
+      notification: {},
+      visible: false
     }
 
     this.countdown = this.countdown.bind(this)
@@ -131,7 +133,6 @@ class TimerBook extends React.Component {
 
     return (
       <View style={styles.container}>
-
         <View style={styles.positonQR}>
           <QRCode
             value={'smartparking'}
@@ -147,9 +148,63 @@ class TimerBook extends React.Component {
 
         <Text style={styles.timeCountdown}>{`${minutes}:${seconds}`}</Text>
 
-        <TouchableOpacity style={styles.button} onPress={this.handleClickStartStop}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => {
+            this.setState({ visible: true })
+          }}
+        >
           <Text style={styles.fontButton}>Cancel</Text>
         </TouchableOpacity>
+        <Dialog
+          width={0.9}
+          rounded
+          visible={this.state.visible}
+          dialogTitle={
+            <DialogTitle
+              title="Alert"
+              style={{
+                backgroundColor: 'white',
+                alignSelf: 'center',
+                alignItems: 'center'
+              }}
+              hasTitleBar={false}
+              align="left"
+            />
+          }
+          footer={
+            <DialogFooter>
+              <DialogButton
+                text="Yes"
+                style={{
+                  backgroundColor: 'white',
+                  alignSelf: 'center'
+                }}
+                bordered
+                onPress={() => {
+                  this.handleClickStartStop()
+                  this.setState({ visible: false })
+                }}
+                key="button-1"
+              />
+              <DialogButton
+                text="No"
+                bordered
+                onPress={() => {
+                  this.setState({ visible: false })
+                }}
+                key="button-2"
+              />
+            </DialogFooter>
+          }
+          onTouchOutside={() => {
+            this.setState({ visible: false })
+          }}
+        >
+          <DialogContent>
+            <Text>Are you sure you want to Cancel ?</Text>
+          </DialogContent>
+        </Dialog>
       </View>
     )
   }
