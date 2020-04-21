@@ -76,7 +76,7 @@ export const Home = (props) => {
       <View style={styles.header}>
         <Image
           style={{
-            width: '28%',
+            width: '25%',
             height: '75%',
             alignItems: 'flex-start',
             marginLeft: 10,
@@ -121,12 +121,4 @@ const styles = StyleSheet.create({
     fontSize: 25,
     marginRight: 15
   },
-  menumore: {
-    position: 'absolute',
-    top: 100,
-    right: 10,
-    width: 40,
-    height: 35
-    // backgroundColor: 'rgba(21, 22, 48, 0.1)',
-  }
 })

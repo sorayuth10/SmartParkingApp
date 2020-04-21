@@ -9,11 +9,6 @@ export default class AboutUs extends React.Component {
         {/* dark-content Status bar */}
         <StatusBar barStyle="dark-content" backgroundColor="#EBECF4" animated={true} />
 
-        {/* Back button */}
-        <TouchableOpacity style={styles.back} onPress={() => this.props.navigation.goBack()}>
-          <Ionicons name="ios-arrow-round-back" size={32} color="#FFF" />
-        </TouchableOpacity>
-
         <View style={styles.header}>
           <Text style={styles.headerTitle}>About Us</Text>
 
@@ -54,7 +49,7 @@ const styles = StyleSheet.create({
   },
 
   header: {
-    paddingTop: 35,
+    paddingTop: 60,
     paddingBottom: 10,
     backgroundColor: '#FFF',
     alignItems: 'center',
@@ -68,7 +63,7 @@ const styles = StyleSheet.create({
     zIndex: 10
   },
   headerTitle: {
-    fontSize: 20,
+    fontSize: 25,
     fontWeight: '500'
   },
 
@@ -84,8 +79,8 @@ const styles = StyleSheet.create({
   },
   back: {
     position: 'absolute',
-    top: 30,
-    left: 1,
+    top: 60,
+    left: 20,
     paddingLeft: 10,
     width: 80,
     height: 35,

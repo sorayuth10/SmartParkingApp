@@ -53,8 +53,9 @@ export default class Register extends React.Component {
             <View style={styles.form}>
               <TextInput
                 style={styles.input}
-                autoCapitalize="words"
+                autoCapitalize="sentences"
                 placeholder="Full Name"
+                keyboardType="ascii-capable"
                 onChangeText={(fullname) => this.setState({ fullname })}
                 value={this.state.fullname}
                 returnKeyType={'next'}
@@ -91,6 +92,7 @@ export default class Register extends React.Component {
                   secureTextEntry
                   autoCapitalize="none"
                   placeholder="Password"
+                  keyboardType="ascii-capable"
                   onChangeText={(password) => this.setState({ password })}
                   value={this.state.password}
                   ref={(input) => {
@@ -111,6 +113,7 @@ export default class Register extends React.Component {
                   secureTextEntry
                   autoCapitalize="none"
                   placeholder="Confirm Password"
+                  keyboardType="ascii-capable"
                   onChangeText={(repassword) => this.setState({ repassword })}
                   value={this.state.repassword}
                   ref={(input) => {
@@ -183,7 +186,7 @@ const styles = StyleSheet.create({
   },
   back: {
     position: 'absolute',
-    top: 40,
+    top: 60,
     left: 30,
     width: 35,
     height: 35,
