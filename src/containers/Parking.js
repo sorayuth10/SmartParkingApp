@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, StatusBar, Image, Dimensions } from 'react-native'
 import * as firebase from 'firebase'
+import axios from 'axios'
 import { Ionicons } from '@expo/vector-icons'
 import { Dialog, DialogContent, DialogTitle, DialogFooter, DialogButton } from 'react-native-popup-dialog'
 import { NavigationActions, StackActions } from 'react-navigation'
@@ -10,23 +11,56 @@ export const Parking = (props) => {
   const [defaultNamePlace, setNamePlace] = useState({ namePlace: 'default' })
   const [dialogVisible, setDialogVisible] = useState(false)
   const dialogHead = `Book a ${defaultNamePlace.namePlace.name} park`
+  const [carPark, setCarPark] = useState(['', '', '', ''])
+  const [srcCar,setSrcCar] = useState(require(`../../assets/Grey.png`))
+
+  const sumAvailable = () => carPark.reduce((a, b) => a + b, 0)
+  
+  const fetchingSensor = useCallback(async () => {
+    let sensor = await axios.get(`http://34.87.153.90:5000/sensor/`)
+    setCarPark(sensor.data)
+  }, [])
+
+  const parkReport = (num) => {
+    if (carPark[num] === 0) {
+      return 'Red'
+    } else if (carPark[num] === 1) {
+      return 'Green'
+    } else {
+      return 'Grey'
+    }
+  }
+
+  const numberPlacename = () => {
+    firebase
+      .database()
+      .ref('Devices')
+      .on('value', (data) => {
+        const arrangePlace = Object.values(data.val()).map(({ Place: { name } }) => name)
+        const duplicatePlace = arrangePlace
+          .map((e, i) => (e === defaultNamePlace.namePlace.name ? i : ''))
+          .filter(String)
+        //ได้ index array ของ place มาใส่ parkReport[i] return 1,0 ==> Green, Red
+        duplicatePlace.map((e) => setSrcCar(require(`../../assets/${parkReport(e)}.png`)))
+      })
+  }
+
+  const fetchingNameplace = async () => {
+    try {
+      const paramsNamePlace = await navigation.getParam('namePlace', '')
+      await numberPlacename()
+      await setNamePlace({ namePlace: paramsNamePlace })
+    } catch (e) {
+      console.log(e)
+    }
+  }
 
   useEffect(() => {
-    const fetching = async () => {
-      try {
-        const paramsNamePlace = await navigation.getParam('namePlace', '')
-        await setNamePlace({ namePlace: paramsNamePlace })
-      } catch (e) {
-        console.log(e)
-      }
-    }
-    fetching()
-    // IIFE
-    // (async function fetching() {
-    //   await navigation.getParam('namePlace', '')
-    //   setNamePlace({ namePlace: navigation.getParam('namePlace', '') })
-    // } ) ( )
-  }, [])
+    fetchingNameplace()
+    setTimeout(() => {
+      fetchingSensor()
+    }, 4000)
+  }, [fetchingSensor])
 
   const resetAction = StackActions.reset({
     index: 0,
@@ -57,10 +91,10 @@ export const Parking = (props) => {
       </View>
 
       <View style={styles.Text}>
-        <Text style={{ fontSize: 15, color: 'black' }}>เหลือที่ว่าง</Text>
-        <Text style={{ fontSize: 20, color: 'red' }}>10</Text>
-        <Text style={{ fontSize: 15, color: 'black' }}>จากทั้งหมด</Text>
-        <Text style={{ fontSize: 20, color: 'black' }}>10</Text>
+        <Text style={{ fontSize: 15 }}>เหลือที่ว่าง</Text>
+        <Text style={{ fontSize: 20, color: 'red' }}> {sumAvailable()} คัน</Text>
+        <Text style={{ fontSize: 15 }}>จากทั้งหมด</Text>
+        <Text style={{ fontSize: 20 }}>10</Text>
       </View>
 
       <View style={styles.form}>
@@ -69,7 +103,7 @@ export const Parking = (props) => {
             <Text style={{ alignSelf: 'center' }}>001</Text>
             <Image
               style={{ width: Dimensions.get('window').width / 5, height: Dimensions.get('window').height / 5.2 }}
-              source={require('../../assets/Green.png')}
+              source={srcCar}
             />
           </View>
         </TouchableOpacity>
@@ -79,7 +113,7 @@ export const Parking = (props) => {
             <Text style={{ alignSelf: 'center' }}>002</Text>
             <Image
               style={{ width: Dimensions.get('window').width / 5, height: Dimensions.get('window').height / 5.2 }}
-              source={require('../../assets/Green.png')}
+              source={srcCar}
             />
           </View>
         </TouchableOpacity>
@@ -89,7 +123,7 @@ export const Parking = (props) => {
             <Text style={{ alignSelf: 'center' }}>003</Text>
             <Image
               style={{ width: Dimensions.get('window').width / 5, height: Dimensions.get('window').height / 5.2 }}
-              source={require('../../assets/Green.png')}
+              source={srcCar}
             />
           </View>
         </TouchableOpacity>
@@ -99,7 +133,7 @@ export const Parking = (props) => {
             <Text style={{ alignSelf: 'center' }}>004</Text>
             <Image
               style={{ width: Dimensions.get('window').width / 5, height: Dimensions.get('window').height / 5.2 }}
-              source={require('../../assets/Green.png')}
+              source={srcCar}
             />
           </View>
         </TouchableOpacity>
@@ -109,7 +143,7 @@ export const Parking = (props) => {
             <Text style={{ alignSelf: 'center' }}>005</Text>
             <Image
               style={{ width: Dimensions.get('window').width / 5, height: Dimensions.get('window').height / 5.2 }}
-              source={require('../../assets/Green.png')}
+              source={srcCar}
             />
           </View>
         </TouchableOpacity>
@@ -126,7 +160,7 @@ export const Parking = (props) => {
                 height: Dimensions.get('window').height / 5.2,
                 transform: [{ rotate: '180deg' }]
               }}
-              source={require('../../assets/Green.png')}
+              source={srcCar}
             />
             <Text style={{ alignSelf: 'center' }}>006</Text>
           </View>
@@ -140,7 +174,7 @@ export const Parking = (props) => {
                 height: Dimensions.get('window').height / 5.2,
                 transform: [{ rotate: '180deg' }]
               }}
-              source={require('../../assets/Green.png')}
+              source={srcCar}
             />
             <Text style={{ alignSelf: 'center' }}>007</Text>
           </View>
@@ -154,7 +188,7 @@ export const Parking = (props) => {
                 height: Dimensions.get('window').height / 5.2,
                 transform: [{ rotate: '180deg' }]
               }}
-              source={require('../../assets/Green.png')}
+              source={srcCar}
             />
             <Text style={{ alignSelf: 'center' }}>008</Text>
           </View>
@@ -168,7 +202,7 @@ export const Parking = (props) => {
                 height: Dimensions.get('window').height / 5.2,
                 transform: [{ rotate: '180deg' }]
               }}
-              source={require('../../assets/Green.png')}
+              source={srcCar}
             />
             <Text style={{ alignSelf: 'center' }}>009</Text>
           </View>
@@ -182,7 +216,7 @@ export const Parking = (props) => {
                 height: Dimensions.get('window').height / 5.2,
                 transform: [{ rotate: '180deg' }]
               }}
-              source={require('../../assets/Green.png')}
+              source={srcCar}
             />
             <Text style={{ alignSelf: 'center' }}>010</Text>
           </View>
