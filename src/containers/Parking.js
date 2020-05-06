@@ -40,7 +40,7 @@ export const Parking = (props) => {
         const duplicatePlace = arrangePlace
           .map((e, i) => (e === defaultNamePlace.namePlace.name ? i : ''))
           .filter(String)
-        //ได้ index array ของ place มาใส่ parkReport[i] return 1,0 ==> Green, Red
+
         duplicatePlace.map((e) => setSrcCar(require(`../../assets/${parkReport(e)}.png`)))
       })
   }
