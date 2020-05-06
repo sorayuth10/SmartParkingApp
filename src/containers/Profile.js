@@ -5,13 +5,13 @@ import { Ionicons } from '@expo/vector-icons'
 
 export const Profile = (props) => {
   const { navigation } = props
-  const [user, setUser] = React.useState({
+  const [user, setUser] = useState({
     displayName: '',
     License: '',
     Brand: '',
     Province: ''
   })
-  const [photoURL, setphotoURL] = React.useState(require('../../assets/account.png'))
+  const [photoURL, setphotoURL] = useState(require('../../assets/account.png'))
   const signOutUser = () => {
     firebase.auth().signOut()
   }
@@ -29,7 +29,6 @@ export const Profile = (props) => {
         setUser((prev) => ({ ...prev, Province: data.toJSON().Province }))
       })
     if (firebase.auth().currentUser.photoURL != null) {
-      console.log(firebase.auth().currentUser.photoURL)
       setphotoURL({ uri: firebase.auth().currentUser.photoURL })
     }
   }
