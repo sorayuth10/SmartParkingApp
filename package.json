@@ -28,7 +28,8 @@
     "react-native-webview": "^7.4.3",
     "react-navigation": "^4.0.10",
     "react-navigation-stack": "^2.0.16",
-    "styled-components": "^5.0.1"
+    "styled-components": "^5.0.1",
+    "use-force-update": "^1.0.7"
   },
   "devDependencies": {
     "babel-preset-expo": "~8.0.0",
