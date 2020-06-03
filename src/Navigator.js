@@ -12,7 +12,7 @@ import AboutUs from './containers/AboutUs'
 import TimerBook from './containers/TimerBook'
 
 import * as firebase from 'firebase'
-import { firebaseConfig } from '../config'
+import { firebaseConfig } from './configs/config'
 
 firebase.initializeApp(firebaseConfig)
 

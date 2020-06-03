@@ -10,7 +10,7 @@ npm-debug.*
 *.orig.*
 web-build/
 web-report/
-config.js
+src/configs/*
 prettier.config.js
 
 # macOS
