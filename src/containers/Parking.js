@@ -1,66 +1,55 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, StatusBar, Image, Dimensions } from 'react-native'
-import * as firebase from 'firebase'
 import axios from 'axios'
 import { Ionicons } from '@expo/vector-icons'
 import { Dialog, DialogContent, DialogTitle, DialogFooter, DialogButton } from 'react-native-popup-dialog'
 import { NavigationActions, StackActions } from 'react-navigation'
+import config from '../configs'
+import useForceUpdate from 'use-force-update'
 
 export const Parking = (props) => {
   const { navigation } = props
-  const [defaultNamePlace, setNamePlace] = useState({ namePlace: 'default' })
+  const [defaultNamePlace, setNamePlace] = useState('default')
   const [dialogVisible, setDialogVisible] = useState(false)
-  const dialogHead = `Book a ${defaultNamePlace.namePlace.name} park`
-  const [carPark, setCarPark] = useState(['', '', '', ''])
-  const [srcCar,setSrcCar] = useState(require(`../../assets/Grey.png`))
-
-  const sumAvailable = () => carPark.reduce((a, b) => a + b, 0)
-  
-  const fetchingSensor = useCallback(async () => {
-    let sensor = await axios.get(`http://34.87.153.90:5000/sensor/`)
-    setCarPark(sensor.data)
-  }, [])
-
-  const parkReport = (num) => {
-    if (carPark[num] === 0) {
-      return 'Red'
-    } else if (carPark[num] === 1) {
-      return 'Green'
-    } else {
-      return 'Grey'
-    }
+  const dialogHead = `Book a ${defaultNamePlace} park`
+  const Green = require('../../assets/Green.png')
+  const Red = require('../../assets/Red.png')
+  const Grey = require('../../assets/Grey.png')
+  const [carPark, setCarPark] = useState([])
+  const forceUpdate = useForceUpdate()
+  const refeshPage = () => {
+    setTimeout(() => {
+      forceUpdate()
+    }, 5000)
   }
-
-  const numberPlacename = () => {
-    firebase
-      .database()
-      .ref('Devices')
-      .on('value', (data) => {
-        const arrangePlace = Object.values(data.val()).map(({ Place: { name } }) => name)
-        const duplicatePlace = arrangePlace
-          .map((e, i) => (e === defaultNamePlace.namePlace.name ? i : ''))
-          .filter(String)
-
-        duplicatePlace.map((e) => setSrcCar(require(`../../assets/${parkReport(e)}.png`)))
-      })
-  }
-
-  const fetchingNameplace = async () => {
+  const fetchingNamePlace = useCallback(async () => {
     try {
       const paramsNamePlace = await navigation.getParam('namePlace', '')
-      await numberPlacename()
-      await setNamePlace({ namePlace: paramsNamePlace })
+      await setNamePlace(paramsNamePlace.name)
     } catch (e) {
       console.log(e)
     }
+  }, [])
+  const fetchingSensor = useCallback(async () => {
+    let sensor = await axios.get(`${config.apiUrl}/${defaultNamePlace}`)
+    setCarPark(sensor.data)
+  }, [defaultNamePlace])
+  const parkReport = (num) => {
+    if (carPark[num] === 0) {
+      return Red
+    } else if (carPark[num] === 1) {
+      return Green
+    } else {
+      return Grey
+    }
   }
+  const sumAvailable = () => carPark.reduce((a, b) => a + b, 0)
 
   useEffect(() => {
-    fetchingNameplace()
-    setTimeout(() => {
-      fetchingSensor()
-    }, 4000)
-  }, [fetchingSensor])
+    fetchingNamePlace()
+    fetchingSensor()
+    refeshPage()
+  }, [fetchingSensor, refeshPage])
 
   const resetAction = StackActions.reset({
     index: 0,
@@ -87,7 +76,7 @@ export const Parking = (props) => {
           <Ionicons name="ios-arrow-back" size={32} />
         </TouchableOpacity>
 
-        <Text style={styles.headerTitle}>{defaultNamePlace.namePlace.name}</Text>
+        <Text style={styles.headerTitle}>{defaultNamePlace}</Text>
       </View>
 
       <View style={styles.Text}>
@@ -103,7 +92,7 @@ export const Parking = (props) => {
             <Text style={{ alignSelf: 'center' }}>001</Text>
             <Image
               style={{ width: Dimensions.get('window').width / 5, height: Dimensions.get('window').height / 5.2 }}
-              source={srcCar}
+              source={parkReport(0)}
             />
           </View>
         </TouchableOpacity>
@@ -113,7 +102,7 @@ export const Parking = (props) => {
             <Text style={{ alignSelf: 'center' }}>002</Text>
             <Image
               style={{ width: Dimensions.get('window').width / 5, height: Dimensions.get('window').height / 5.2 }}
-              source={srcCar}
+              source={parkReport(1)}
             />
           </View>
         </TouchableOpacity>
@@ -123,7 +112,7 @@ export const Parking = (props) => {
             <Text style={{ alignSelf: 'center' }}>003</Text>
             <Image
               style={{ width: Dimensions.get('window').width / 5, height: Dimensions.get('window').height / 5.2 }}
-              source={srcCar}
+              source={parkReport(2)}
             />
           </View>
         </TouchableOpacity>
@@ -133,7 +122,7 @@ export const Parking = (props) => {
             <Text style={{ alignSelf: 'center' }}>004</Text>
             <Image
               style={{ width: Dimensions.get('window').width / 5, height: Dimensions.get('window').height / 5.2 }}
-              source={srcCar}
+              source={parkReport(3)}
             />
           </View>
         </TouchableOpacity>
@@ -143,7 +132,7 @@ export const Parking = (props) => {
             <Text style={{ alignSelf: 'center' }}>005</Text>
             <Image
               style={{ width: Dimensions.get('window').width / 5, height: Dimensions.get('window').height / 5.2 }}
-              source={srcCar}
+              source={parkReport(4)}
             />
           </View>
         </TouchableOpacity>
@@ -160,7 +149,7 @@ export const Parking = (props) => {
                 height: Dimensions.get('window').height / 5.2,
                 transform: [{ rotate: '180deg' }]
               }}
-              source={srcCar}
+              source={parkReport(5)}
             />
             <Text style={{ alignSelf: 'center' }}>006</Text>
           </View>
@@ -174,7 +163,7 @@ export const Parking = (props) => {
                 height: Dimensions.get('window').height / 5.2,
                 transform: [{ rotate: '180deg' }]
               }}
-              source={srcCar}
+              source={parkReport(6)}
             />
             <Text style={{ alignSelf: 'center' }}>007</Text>
           </View>
@@ -188,7 +177,7 @@ export const Parking = (props) => {
                 height: Dimensions.get('window').height / 5.2,
                 transform: [{ rotate: '180deg' }]
               }}
-              source={srcCar}
+              source={parkReport(7)}
             />
             <Text style={{ alignSelf: 'center' }}>008</Text>
           </View>
@@ -202,7 +191,7 @@ export const Parking = (props) => {
                 height: Dimensions.get('window').height / 5.2,
                 transform: [{ rotate: '180deg' }]
               }}
-              source={srcCar}
+              source={parkReport(8)}
             />
             <Text style={{ alignSelf: 'center' }}>009</Text>
           </View>
@@ -216,7 +205,7 @@ export const Parking = (props) => {
                 height: Dimensions.get('window').height / 5.2,
                 transform: [{ rotate: '180deg' }]
               }}
-              source={srcCar}
+              source={parkReport(9)}
             />
             <Text style={{ alignSelf: 'center' }}>010</Text>
           </View>
@@ -287,8 +276,6 @@ export default Parking
 const styles = StyleSheet.create({
   container: {
     flex: 1
-    // justifyContent: 'center',
-    // alignItems: 'center'
   },
   header: {
     paddingTop: 60,
@@ -341,127 +328,3 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
   }
 })
-
-// import React, { Component } from 'react';
-// import { Alert, AppRegistry, Button, StyleSheet, View, Text, ActivityIndicator, SafeAreaView } from 'react-native';
-// import { Image,SocialIcon,Input } from 'react-native-elements';
-// import Icon from 'react-native-vector-icons/FontAwesome';
-
-// export default class Home extends React.Component {
-//   static navigationOptions = {
-//     title: 'Home',
-
-//   };
-//   render() {
-//     const {navigate} = this.props.navigation;
-//   return (
-
-//     <View style={styles.container}>
-//     <View style={styles.Text}>
-//     <Text style = {styles.Text1}>
-//     3 คัน
-//     </Text>
-
-//     <Text style = {styles.Text2}>
-//     เหลือที่ว่าง
-//     </Text>
-
-//     <Text style = {styles.Text3}>
-//     3 คัน
-//     </Text>
-
-//     <Text style = {styles.Text4}>
-//     ทั้งหมด
-//     </Text>
-
-//     </View>
-
-//     <View style={styles.car}>
-//     <View style={{flex: 1, flexDirection: 'row'}}>
-
-//     <Image
-//             style={{ width: 105, height: 200}}
-//             source={require('../../assets/Green.png')} />
-//     <Image
-//             style={{ width: 105, height: 200}}
-//             source={require('../../assets/Green.png')} />
-//     <Image
-//             style={{ width: 105, height: 200}}
-//             source={require('../../assets/Green.png')} />
-//     </View>
-//     </View>
-
-//     <View style={styles.buttonContainer}>
-//                     <Button
-//                         onPress={this.onPressButton}
-//                         title="ดูสถานที่อื่นๆ"
-//                         color="#848484"
-//                         onPress={() => navigate('Park', {name: 'Park'})}
-//                     />
-//                 </View>
-//     </View>
-// );
-// }
-// }
-
-// const styles = StyleSheet.create({
-
-// container: {
-// flex: 1,
-// backgroundColor: 'white',
-// },
-
-// Text: {
-//   textAlign: "center",
-//   alignItems:'center',
-
-//   marginTop: 30
-
-// },
-
-// Text1: {
-//   color: 'red',
-//   textAlign: "center",
-//   fontSize :40,
-//   alignItems:'center',
-
-// },
-
-// Text2: {
-//   color: '#7D7D7D',
-//   textAlign: "center",
-//   fontSize :20,
-//   flexDirection:'row',
-//   alignItems:'center',
-
-// },
-
-// Text3: {
-//   color: 'red',
-//   textAlign: "center",
-//   fontSize :40,
-//   alignItems:'center',
-
-// },
-
-// Text4: {
-//   color: '#7D7D7D',
-//   textAlign: "center",
-//   fontSize :20,
-//   alignItems:'center',
-
-// },
-
-// car: {
-//   marginTop: 40,
-//   backgroundColor: 'red',
-//   alignItems: 'center'
-// },
-
-// buttonContainer: {
-//   marginTop: 300,
-//   margin:20
-
-// },
-
-// })
