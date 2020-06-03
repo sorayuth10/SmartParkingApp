@@ -1,5 +1,4 @@
 # SmartParkingApp
 Smart Parking Application
 
-ลบโฟลเดอร์ node_module แล้ว
-npm i ใหม่ด้วย !!!
+Smart Parking Application. This app is made from Information Engineering ,KMITL gradurate project group.
