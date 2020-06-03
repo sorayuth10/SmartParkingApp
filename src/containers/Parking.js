@@ -47,9 +47,11 @@ export const Parking = (props) => {
 
   useEffect(() => {
     fetchingNamePlace()
-    fetchingSensor()
+    setTimeout(() => {
+      fetchingSensor()
+    }, 1200)
     refeshPage()
-  }, [fetchingSensor, refeshPage])
+  }, [refeshPage])
 
   const resetAction = StackActions.reset({
     index: 0,
@@ -57,13 +59,10 @@ export const Parking = (props) => {
   })
 
   const handleBooking = () => {
-    console.log('Booking')
     navigation.dispatch(resetAction)
   }
 
-  const handleCar = () => {
-    console.log('Car')
-  }
+  const handleCar = () => {}
 
   return (
     <View style={styles.container}>
