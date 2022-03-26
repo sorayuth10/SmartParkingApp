@@ -15,7 +15,7 @@
     "expo-facebook": "^8.0.0",
     "firebase": "^7.7.0",
     "mem": "^4.0.0",
-    "minimist": "^1.2.5",
+    "minimist": "^1.2.6",
     "react": "~16.9.0",
     "react-dom": "~16.9.0",
     "react-loading": "^2.0.3",
